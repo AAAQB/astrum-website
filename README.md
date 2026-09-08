@@ -35,8 +35,14 @@ contact.html          # 表单校验 + 咨询入口
 
 直接用浏览器打开 `index.html`（或任一一页）。推荐在 VS Code 中安装 Live Server 以获得更佳字体加载体验；离线时字体自动回退为系统中文字体。
 
-- 本机路径：`d:\TXHY\网站`
 - 交互引导：首页含「下滑探索」提示；任务档案页影像可点击放大；洞察页含长文与目录。
+
+## 🌐 在线部署（GitHub Pages）
+
+- 线上地址：https://aaaqb.github.io/astrum-website/
+- 仓库：https://github.com/AAAQB/astrum-website
+- 方式：静态站推送到 `main` 分支，GitHub Pages 以 `main` 根目录为源自动发布。全站使用相对路径，可在任意子路径/域名下直接运行。
+- 更新：改动后 `git add -A && git commit -m "..." && git push origin main`，约 1 分钟内自动上线。
 
 ## 🎨 设计系统速览
 
