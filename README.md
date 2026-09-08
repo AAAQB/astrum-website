@@ -56,3 +56,7 @@ contact.html          # 表单校验 + 咨询入口
 | 等宽标签 | Space Mono |
 
 动效遵循统一节奏令牌：`--ease-out` / `--ease-io` / `--ease-spring`，时长 120ms→1400ms。
+
+## 🖼 素材说明
+- 任务/文章/服务区的视觉图来自 **Pexels** 实拍（自用，署名 Pexels）。替换映射集中在 `assets/js/app.js` 顶部 `POSTER_PHOTOS`（按 `poster--solar/-ice/-nebula/...` 场景→图源 URL），配套样式 `assets/css/pages.css` 末尾 `.poster--photo`。
+- 团队头像等抽象装饰保留 CSS 风格；离线时仍回退 CSS 海报，不会缺图。

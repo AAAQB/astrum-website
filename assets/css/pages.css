@@ -859,3 +859,23 @@
 }
 .hero__content { display: grid; gap: var(--sp-5); }
 .hero__cta .btn + .btn { margin-left: 0; }
+
+/* ===== Pexels 实拍图替换（由 JS 加 .poster--photo） ===== */
+.poster--photo {
+  background-size: cover;
+  background-position: center 30%;
+}
+.poster--photo::before,
+.poster--photo .poster__noise,
+.poster--photo .poster__glyph { display: none !important; }
+.poster--photo .poster-veil {
+  background: linear-gradient(180deg, rgba(5,7,13,0.08), rgba(5,7,13,0.62) 76%);
+}
+.poster--photo .poster__code {
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 14px rgba(0,0,0,0.8);
+}
+.poster--photo:hover { background-size: cover; }
+@media (prefers-reduced-motion: reduce) {
+  .poster--photo { transition: none !important; }
+}
