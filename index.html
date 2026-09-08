@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>远穹宇航 ASTRUM — 把人类的想象力送上轨道</title>
+  <meta name="description" content="远穹宇航 ASTRUM：面向全人类的太空旅行与空间工程体验。轨道观光、载人发射、空间站驻留、太空教育。" />
+  <meta name="theme-color" content="#05070d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070d'/%3E%3Cpath d='M32 12 L34.6 29.4 L52 32 L34.6 34.6 L32 52 L29.4 34.6 L12 32 L29.4 29.4 Z' fill='%23ff5a2e'/%3E%3Ccircle cx='50' cy='18' r='4' fill='%2354e6e0'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/effects.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+<body>
+  <!-- 无障碍跳过链接 -->
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- 环境层 -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
+  <div class="cursor-ring" aria-hidden="true" style="opacity:0"><span class="cursor-label"></span></div>
+
+  <!-- 预加载 -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__mark">
+        <svg viewBox="0 0 64 64" width="72" height="72" fill="none" style="color:#ff5a2e">
+          <circle cx="32" cy="32" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.6"/>
+          <ellipse cx="32" cy="32" rx="31" ry="9" stroke="#54e6e0" stroke-width="1" opacity="0.5" transform="rotate(-22 32 32)"/>
+          <path d="M32 10 L35 29.5 L54 32 L35 34.5 L32 54 L29 34.5 L10 32 L29 29.5 Z" fill="currentColor"/>
+          <circle cx="52" cy="18" r="3.6" fill="#54e6e0"/>
+        </svg>
+      </div>
+      <div class="preloader__name">ASTRUM</div>
+      <div class="preloader__bar"><span></span></div>
+      <div class="preloader__pct">000%</div>
+      <div class="preloader__status">校准推进器</div>
+    </div>
+  </div>
+
+  <!-- 顶栏 -->
+  <header class="site-header" id="siteHeader">
+    <div class="container-wide nav-inner">
+      <a class="brand" href="index.html" aria-label="远穹宇航 首页">
+        <span class="brand__mark">
+          <svg viewBox="0 0 64 64" width="30" height="30" fill="none" style="color:#ff5a2e">
+            <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.7"/>
+            <ellipse cx="32" cy="32" rx="30" ry="8" stroke="#54e6e0" stroke-width="1" opacity="0.55" transform="rotate(-22 32 32)"/>
+            <path d="M32 11 L34.9 29.1 L53 32 L34.9 34.9 L32 53 L29.1 34.9 L11 32 L29.1 29.1 Z" fill="currentColor"/>
+            <circle cx="51" cy="17" r="3.6" fill="#54e6e0"/>
+          </svg>
+        </span>
+        <span class="brand__name">
+          <span class="brand__name-en">ASTRUM</span>
+          <span class="brand__name-cn">远 穹 宇 航</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="主导航">
+        <a class="nav-link active" href="index.html">首页</a>
+        <a class="nav-link" href="about.html">关于</a>
+        <a class="nav-link" href="services.html">服务</a>
+        <a class="nav-link" href="work.html">任务</a>
+        <a class="nav-link" href="blog.html">洞察</a>
+        <a class="nav-link" href="pricing.html">票价</a>
+        <a class="nav-link" href="contact.html">联系</a>
+      </nav>
+
+      <div class="nav-right">
+        <a class="btn btn--primary btn--sm nav-cta-desktop" data-magnetic href="contact.html">立即启程 <span class="arrow">→</span></a>
+        <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false"><span class="bars"><span></span><span></span></span></button>
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <!-- 移动端全屏菜单 -->
+  <nav class="mobile-menu" id="mobileMenu" aria-label="移动端导航">
+    <div class="mobile-menu__links">
+      <a class="mobile-menu__link active" style="--d:.02s" href="index.html"><span class="idx">01</span>首页</a>
+      <a class="mobile-menu__link" style="--d:.06s" href="about.html"><span class="idx">02</span>关于</a>
+      <a class="mobile-menu__link" style="--d:.1s" href="services.html"><span class="idx">03</span>服务</a>
+      <a class="mobile-menu__link" style="--d:.14s" href="work.html"><span class="idx">04</span>任务</a>
+      <a class="mobile-menu__link" style="--d:.18s" href="blog.html"><span class="idx">05</span>洞察</a>
+      <a class="mobile-menu__link" style="--d:.22s" href="pricing.html"><span class="idx">06</span>票价</a>
+      <a class="mobile-menu__link" style="--d:.26s" href="contact.html"><span class="idx">07</span>联系</a>
+    </div>
+    <div class="mobile-menu__foot">
+      <span>© <span class="js-year">2026</span> 远穹宇航 · 面向全人类开放</span>
+      <span>hello@astrum.space</span>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="top">
+      <div class="hero__bg">
+        <canvas id="cosmos" aria-hidden="true"></canvas>
+        <div class="horizon-glow" aria-hidden="true"></div>
+        <div class="aurora" aria-hidden="true">
+          <div class="aurora__blob aurora__blob--1"></div>
+          <div class="aurora__blob aurora__blob--2"></div>
+        </div>
+      </div>
+
+      <div class="container-wide hero__inner hero-stagger" style="z-index:2">
+        <div class="overline overline--dot">深空旅行 · 面向全人类开放预约</div>
+
+        <h1 class="hero__title cn" id="heroTitle">
+          <span class="mask-line" style="--d:.06s"><span>把人类的想象力，</span></span>
+          <span class="mask-line" style="--d:.2s"><span>送上 <em>轨道</em>、带向深空。</span></span>
+        </h1>
+
+        <div class="hero__lower">
+          <div class="hero__content">
+            <p class="lead">远穹宇航成立于 2019 年。六年来，我们完成了 48 次成功的载人与货运发射，把 312 位来自 32 个国家的旅客送上了 420 公里的轨道。今天，轮到你了。</p>
+            <div class="hero__cta">
+              <a class="btn btn--primary btn--lg" data-magnetic href="pricing.html">预订你的席位 <span class="arrow">→</span></a>
+              <a class="btn btn--ghost btn--lg" data-magnetic href="work.html">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                查看往期任务
+              </a>
+            </div>
+            <div class="hero__meta">
+              <div class="hero__meta-item"><span class="v">48</span><span class="k">次成功发射</span></div>
+              <div class="hero__meta-item"><span class="v">312</span><span class="k">位太空旅客</span></div>
+              <div class="hero__meta-item"><span class="v">32</span><span class="k">个国家的乘客</span></div>
+              <div class="hero__meta-item"><span class="v">0</span><span class="k">重大安全事故</span></div>
+            </div>
+          </div>
+
+          <aside class="hero__launch">
+            <div class="launch-panel">
+              <div class="launch-panel__head">
+                <div>
+                  <div class="mono-tag">NEXT LAUNCH · 下一次任务</div>
+                  <div class="launch-panel__name">极光号 · 轨道环游</div>
+                </div>
+                <span class="chip chip--ember"><span class="dot"></span>T-MINUS</span>
+              </div>
+              <div class="countdown" data-countdown-to="2026-12-24T20:00:00">
+                <div class="cd-col"><span class="cd-num">00</span><span class="cd-label">天</span></div>
+                <div class="cd-col"><span class="cd-num">00</span><span class="cd-label">时</span></div>
+                <div class="cd-col"><span class="cd-num">00</span><span class="cd-label">分</span></div>
+                <div class="cd-col"><span class="cd-num">00</span><span class="cd-label">秒</span></div>
+              </div>
+              <div class="launch-panel__meta">
+                <div class="row"><b>发射场</b><span>KSC · 07 号工位</span></div>
+                <div class="row"><b>乘员</b><span>6 名 · 满员候补</span></div>
+                <div class="row"><b>轨道</b><span>LEO · 420 km</span></div>
+              </div>
+              <div style="margin-top:1.4rem">
+                <a class="link-arrow" href="contact.html"><span class="txt">加入候补名单</span><span class="ico">→</span></a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="scroll-cue hero__scrollcue" aria-hidden="true">
+        <div class="scroll-cue__mouse"></div>
+        <span>下滑探索</span>
+      </div>
+      <div class="hero__sideline" aria-hidden="true"><span>远穹宇航 · EST. 2019</span><span class="vl"></span><span>SCROLL TO ORBIT</span></div>
+    </section>
+
+    <!-- ================= 走马灯 ================= -->
+    <div class="marquee section--tight" data-marquee aria-hidden="true">
+      <div class="marquee__track marquee__track--left">
+        <div class="marquee__group">
+          <span class="marquee__item">轨道观光<span class="m-star">✦</span></span>
+          <span class="marquee__item">深空货运<span class="m-star">✦</span></span>
+          <span class="marquee__item">卫星部署<span class="m-star">✦</span></span>
+          <span class="marquee__item">空间站对接<span class="m-star">✦</span></span>
+          <span class="marquee__item">亚轨道竞速<span class="m-star">✦</span></span>
+          <span class="marquee__item">月面基地<span class="m-star">✦</span></span>
+          <span class="marquee__item">失重训练<span class="m-star">✦</span></span>
+          <span class="marquee__item">星际返回<span class="m-star">✦</span></span>
+        </div>
+        <div class="marquee__group">
+          <span class="marquee__item">轨道观光<span class="m-star">✦</span></span>
+          <span class="marquee__item">深空货运<span class="m-star">✦</span></span>
+          <span class="marquee__item">卫星部署<span class="m-star">✦</span></span>
+          <span class="marquee__item">空间站对接<span class="m-star">✦</span></span>
+          <span class="marquee__item">亚轨道竞速<span class="m-star">✦</span></span>
+          <span class="marquee__item">月面基地<span class="m-star">✦</span></span>
+          <span class="marquee__item">失重训练<span class="m-star">✦</span></span>
+          <span class="marquee__item">星际返回<span class="m-star">✦</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 宣言 ================= -->
+    <section class="section" id="manifesto">
+      <span class="ghost-word" aria-hidden="true">ORBIT</span>
+      <div class="container">
+        <span class="sec-num">SEC 01 / 宣言</span>
+        <div class="duo">
+          <div class="duo__media" data-reveal="left">
+            <div class="media-frame" data-parallax="-0.04">
+              <div class="poster poster--nebula">
+                <div class="poster__noise"></div>
+                <div class="poster__glyph">远穹</div>
+                <span class="poster__code">ASTRUM / SINCE 2019</span>
+                <div class="poster-veil"></div>
+              </div>
+              <div class="media-frame__ring"></div>
+              <span class="corner corner--tl"></span><span class="corner corner--tr"></span>
+              <span class="corner corner--bl"></span><span class="corner corner--br"></span>
+            </div>
+          </div>
+          <div class="manifesto__side">
+            <div class="overline">关于我们 · WHY WE FLY</div>
+            <h2 class="cn section-title" data-reveal="up">为什么而飞？</h2>
+            <p class="quote-xl" data-reveal="up" style="--d:.08s">
+              有人说深空是<span class="strong-ember">孤寂</span>的。我们却看见——那是人类想象力新的
+              <span class="strong-ice">起跑线</span>。
+            </p>
+            <p class="lead" data-reveal="up" style="--d:.16s">
+              当第一道黎明的光照进舷窗，当蓝色星球在脚下缓缓转动，你将意识到：探索从来不是离开家园，而是把家园装进心里，再带回更辽阔的答案。
+            </p>
+            <div data-reveal="up" style="--d:.24s">
+              <a class="link-arrow" href="about.html"><span class="txt">阅读我们的完整宣言</span><span class="ico">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 数据 ================= -->
+    <section class="section section--tint" id="stats">
+      <div class="container">
+        <span class="sec-num">SEC 02 / 数据</span>
+        <div class="section-head section-head--row">
+          <div class="section-head__inner">
+            <div class="overline overline--ice" data-reveal="up">六年数据 · SIX YEARS IN NUMBERS</div>
+            <h2 class="cn section-title" data-reveal="up">用安全，丈量每一次跃升</h2>
+          </div>
+          <p class="lead" style="max-width:42ch" data-reveal="up">我们不追求最快抵达轨道，只追求每一次都能安全回家。</p>
+        </div>
+        <div class="stat-strip">
+          <div class="stat-card" data-reveal="up">
+            <div class="stat-card__num"><span data-count="48"></span><span class="suffix">+</span></div>
+            <div class="stat-card__label">次成功载人 / 货运发射</div>
+            <div class="stat-card__sub">含 2 次月面无人验证</div>
+          </div>
+          <div class="stat-card" data-reveal="up" style="--d:.08s">
+            <div class="stat-card__num"><span data-count="312"></span><span class="suffix">名</span></div>
+            <div class="stat-card__label">平民太空旅客</div>
+            <div class="stat-card__sub">年龄跨度 18 — 84 岁</div>
+          </div>
+          <div class="stat-card" data-reveal="up" style="--d:.16s">
+            <div class="stat-card__num"><span data-count="98.6" data-decimals="1"></span><span class="suffix">%</span></div>
+            <div class="stat-card__label">任务正点率</div>
+            <div class="stat-card__sub">含天气窗口再调度</div>
+          </div>
+          <div class="stat-card" data-reveal="up" style="--d:.24s">
+            <div class="stat-card__num"><span data-count="11420"></span><span class="suffix">min</span></div>
+            <div class="stat-card__label">累计轨道飞行时长</div>
+            <div class="stat-card__sub">约 7.9 个地球日</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 三大业务支柱 ================= -->
+    <section class="section" id="services">
+      <div class="container">
+        <span class="sec-num">SEC 03 / 业务</span>
+        <div class="section-head section-head--row">
+          <div class="section-head__inner">
+            <div class="overline" data-reveal="up">我们能做什么 · CAPABILITIES</div>
+            <h2 class="cn section-title" data-reveal="up">从一次心跳，到一段文明</h2>
+          </div>
+          <a class="btn btn--ghost" data-magnetic href="services.html" data-reveal="up">浏览全部服务 <span class="arrow">→</span></a>
+        </div>
+
+        <div class="grid grid-cols-3">
+          <!-- 1 -->
+          <article class="card pillar-card tilt-wrap" data-reveal="up">
+            <div class="tilt-card">
+              <div class="pillar-card__icon">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2 0-2.8-.8-.8-2.2-.8-3 .8z"/><path d="M12 15 9 12l6.5-6.5c1.5-1.5 3.9-2 5.5-.5s1 4-.5 5.5L14 17l-3-3z"/><path d="m9 12-2.5 2.5"/><path d="M12 15l-1 1"/></svg>
+              </div>
+              <span class="pillar-card__n">01</span>
+              <h3>轨道观光</h3>
+              <p>乘坐极光号抵达 420 公里轨道，完成 3–8 天的环游。看 16 次日出日落，与空间站对接，进行太空漫步。</p>
+              <div class="pillar-card__foot">
+                <a class="link-arrow" href="services.html"><span class="txt">了解观光计划</span><span class="ico">→</span></a>
+              </div>
+              <div class="tilt-glare"></div>
+            </div>
+          </article>
+          <!-- 2 -->
+          <article class="card pillar-card tilt-wrap" data-reveal="up" style="--d:.1s">
+            <div class="tilt-card">
+              <div class="pillar-card__icon pillar-card__icon--ice">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="8" rx="1.5"/><path d="M12 11v6"/><path d="M8 21h8"/><path d="M7 17l-3 4M17 17l3 4"/><path d="M9 3V1.5M15 3V1.5"/></svg>
+              </div>
+              <span class="pillar-card__n">02</span>
+              <h3>空间工程</h3>
+              <p>从立方星到大型桁架：我们在 48 小时内把科学家的载荷送进轨道，并为科研机构与商业伙伴提供返回式服务。</p>
+              <div class="pillar-card__foot">
+                <a class="link-arrow" href="services.html"><span class="txt">为你的载荷报价</span><span class="ico">→</span></a>
+              </div>
+              <div class="tilt-glare"></div>
+            </div>
+          </article>
+          <!-- 3 -->
+          <article class="card pillar-card tilt-wrap" data-reveal="up" style="--d:.2s">
+            <div class="tilt-card">
+              <div class="pillar-card__icon" style="background:radial-gradient(circle at 30% 25%,rgba(255,215,0,.22),rgba(255,255,255,.02));border-color:rgba(255,215,0,.35);color:#ffd54a">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 0-9-9"/><path d="M3.6 9.5h3l1.2-2.5L11 11l1.8-3.2L15 9.5h3"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
+              </div>
+              <span class="pillar-card__n">03</span>
+              <h3>太空教育</h3>
+              <p>远穹学院把课堂搬进轨道：失重实验、星象观测与真实遥测数据，让下一代在仰望时，知道自己也能抵达。</p>
+              <div class="pillar-card__foot">
+                <a class="link-arrow" href="services.html"><span class="txt">报名学院课程</span><span class="ico">→</span></a>
+              </div>
+              <div class="tilt-glare"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 精选任务 ================= -->
+    <section class="section section--tint" id="missions">
+      <div class="container">
+        <span class="sec-num">SEC 04 / 任务</span>
+        <div class="section-head section-head--row">
+          <div class="section-head__inner">
+            <div class="overline overline--ice" data-reveal="up">精选任务 · FEATURED MISSIONS</div>
+            <h2 class="cn section-title" data-reveal="up">那些回望地球的时刻</h2>
+          </div>
+          <a class="btn btn--ghost" data-magnetic href="work.html" data-reveal="up">全部任务档案 <span class="arrow">→</span></a>
+        </div>
+
+        <div class="grid grid-cols-2" style="align-items:stretch">
+          <!-- 任务 1 -->
+          <article class="mission-card tilt-wrap" data-reveal="up">
+            <div class="tilt-card">
+              <div class="mission-card__media fade-media" data-cursor-media="查看任务" data-lb-item data-poster="poster--solar" data-glyph="☀" data-label="AST-09 · 极光号 轨道环游 / 2026.05">
+                <div class="poster poster--solar">
+                  <div class="poster__noise"></div>
+                  <div class="poster__glyph">☀</div>
+                  <span class="poster__code">AST-09 · LEO 420KM</span>
+                  <div class="poster-veil"></div>
+                </div>
+                <span class="chip chip--ember mission-card__tag"><span class="dot"></span>已完成 · 6 名乘员</span>
+              </div>
+              <div class="mission-card__body">
+                <div class="mission-card__meta">
+                  <span class="mono-tag">2026 · 05 · 14</span>
+                  <span class="mono-tag">轨道观光</span>
+                  <span class="mono-tag">4 天</span>
+                </div>
+                <h3 class="mission-card__title"><a href="work.html#ast09">极光号：追着极光看地球</a></h3>
+                <p class="mission-card__desc">任务沿倾角 51.6° 的轨道掠过极光带。乘员在 4 天内见到 64 次日出，并以 2.8 万公里时速，第一次从太空理解"家园"两个字。</p>
+              </div>
+            </div>
+          </article>
+          <!-- 任务 2 -->
+          <article class="mission-card tilt-wrap" data-reveal="up" style="--d:.12s">
+            <div class="tilt-card">
+              <div class="mission-card__media fade-media" data-cursor-media="查看任务" data-lb-item data-poster="poster--ice" data-glyph="◍" data-label="AST-12 · 曙光号 空间站驻留 / 2026.08">
+                <div class="poster poster--ice">
+                  <div class="poster__noise"></div>
+                  <div class="poster__glyph">◍</div>
+                  <span class="poster__code">AST-12 · STATION DOCK</span>
+                  <div class="poster-veil"></div>
+                </div>
+                <span class="chip mission-card__tag"><span class="dot"></span>正在驻留 · 8 天</span>
+              </div>
+              <div class="mission-card__body">
+                <div class="mission-card__meta">
+                  <span class="mono-tag">2026 · 08 · 02</span>
+                  <span class="mono-tag">空间站驻留</span>
+                  <span class="mono-tag">8 天</span>
+                </div>
+                <h3 class="mission-card__title"><a href="work.html#ast12">曙光号：商业空间站第一夜</a></h3>
+                <p class="mission-card__desc">人类首个商业空间站"曙光"迎来首批驻留客人。乘员与轨道实验室共同完成 11 项科学实验，把答案带回地面。</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 旅程 ================= -->
+    <section class="section" id="journey">
+      <div class="container">
+        <span class="sec-num">SEC 05 / 流程</span>
+        <div class="section-head section-head--row">
+          <div class="section-head__inner">
+            <div class="overline" data-reveal="up">成为旅客 · YOUR JOURNEY</div>
+            <h2 class="cn section-title" data-reveal="up">从地球到轨道，只需四步</h2>
+          </div>
+          <p class="lead" style="max-width:44ch" data-reveal="up">每一程都由专职飞行医师与任务设计师护航，直到你安全落回欢迎你的草地。</p>
+        </div>
+
+        <div class="duo">
+          <div class="journey">
+            <div class="journey__line"><span></span></div>
+
+            <div class="journey__item" data-reveal="right">
+              <span class="journey__mark" aria-hidden="true"></span>
+              <div class="journey__num">01</div>
+              <h3 class="journey__title">健康评估与资格确认</h3>
+              <p class="journey__desc">提交申请后，远穹医疗团队将为你安排 3 天 2 夜的全面体检：离心机耐受、心肺负荷与心理测评。我们接待过 84 岁的奶奶，也接待过轮椅上的植物学家——太空属于每一个有勇气的人。</p>
+              <div class="journey__meta"><span class="chip"><span class="dot"></span>约 2 周 · 全流程一对一问诊</span></div>
+            </div>
+
+            <div class="journey__item" data-reveal="right">
+              <span class="journey__mark" aria-hidden="true"></span>
+              <div class="journey__num">02</div>
+              <h3 class="journey__title">地面训练营</h3>
+              <p class="journey__desc">在位于沙漠中的远穹训练基地，体验 3G 离心机、失重抛物线飞行与全尺寸舱内模拟。没有"最难"，只有一步步建立的身体记忆。</p>
+              <div class="journey__meta"><span class="chip chip--ember"><span class="dot"></span>12 周 · 周末班与集训班可选</span></div>
+            </div>
+
+            <div class="journey__item" data-reveal="right">
+              <span class="journey__mark" aria-hidden="true"></span>
+              <div class="journey__num">03</div>
+              <h3 class="journey__title">发射日 · T 减</h3>
+              <p class="journey__desc">换上远穹飞行服，穿过挥舞旗帜的人群，走进电梯登上发射塔。倒计时最后十秒，你的心跳会和引擎同步——然后，2.8 万吨推力把寂静撕开。</p>
+              <div class="journey__meta"><span class="chip"><span class="dot"></span>T-6h 抵达发射场 · 家属观礼区同步开放</span></div>
+            </div>
+
+            <div class="journey__item" data-reveal="right">
+              <span class="journey__mark" aria-hidden="true"></span>
+              <div class="journey__num">04</div>
+              <h3 class="journey__title">轨道生活与凯旋</h3>
+              <p class="journey__desc">入轨后，你会经历人生中最安静、也最辽阔的几天。返航时，返回舱以伞降方式落在回收海域，你的新人生从此开始。</p>
+              <div class="journey__meta"><span class="chip chip--ember"><span class="dot"></span>3–8 天 · 含返航后健康跟踪一年</span></div>
+            </div>
+          </div>
+
+          <aside class="manifesto__side">
+            <div class="card stat-card" style="padding:var(--sp-6)" data-reveal="up">
+              <div class="mono-tag">TRAINING CAMP</div>
+              <h3 class="cn" style="font-size:var(--fs-h4);margin:1rem 0 0.6rem;font-weight:900">训练的真相</h3>
+              <p style="color:var(--ink-2);font-size:var(--fs-sm)">你不需要是宇航员。我们的离心机上限是 3G，而大多数人能轻松承受 1.8G——那正好是极光号起飞时的最大过载。</p>
+              <div style="margin-top:1.6rem"><a class="link-arrow" href="pricing.html"><span class="txt">查看训练排期</span><span class="ico">→</span></a></div>
+            </div>
+            <div class="card stat-card" style="padding:var(--sp-6);--d:.1s" data-reveal="up">
+              <div class="mono-tag">QUICK FACT</div>
+              <p class="quote-xl" style="font-size:1.5rem;margin-top:1rem"><span class="strong-ember">92%</span> 的旅客说，失重的第一秒就忘了紧张。</p>
+              <p style="color:var(--ink-3);font-size:var(--fs-sm);margin-top:0.6rem">剩下的 8% 在第二秒也忘了。</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 评价 ================= -->
+    <section class="section section--tint" id="voices">
+      <div class="container">
+        <span class="sec-num">SEC 06 / 声音</span>
+        <div class="section-head section-head--row">
+          <div class="section-head__inner">
+            <div class="overline overline--ice" data-reveal="up">旅客之声 · VOICES FROM ORBIT</div>
+            <h2 class="cn section-title" data-reveal="up">回望地球的人，都说了什么</h2>
+          </div>
+        </div>
+
+        <div class="slider" data-slider data-autoplay="true" data-interval="6500" aria-label="旅客评价轮播">
+          <div class="slider__viewport">
+            <div class="slider__track">
+              <div class="slide">
+                <div class="quote-card">
+                  <div class="qmark">"</div>
+                  <blockquote>当我飘在舷窗前，看见大气层薄得像一层水膜，所有国家、所有争执都消失在那道蓝光里。远穹没有卖给我一张票，它卖给我一个全新的世界观。</blockquote>
+                  <div class="quote-card__who">
+                    <span class="quote-card__av">林</span>
+                    <div><b>林晚晴</b><span>教师 · AST-07 乘员 · 2025</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="quote-card">
+                  <div class="qmark">"</div>
+                  <blockquote>84 岁生日那天我在轨道上度过。体检时医生说我的心脏比很多年轻人好——我不确定，但它一定装了很多想看世界的愿望。</blockquote>
+                  <div class="quote-card__who">
+                    <span class="quote-card__av quote-card__av--ice">陈</span>
+                    <div><b>陈望山</b><span>植物学家 · AST-05 乘员 · 2025</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="quote-card">
+                  <div class="qmark">"</div>
+                  <blockquote>作为工程师，我本来只是去验收载荷。结果发射前夜，任务控制让我在舷窗旁多留了十分钟——他们知道，没有人能看着地球转动而无动于衷。</blockquote>
+                  <div class="quote-card__who">
+                    <span class="quote-card__av">R.</span>
+                    <div><b>Rafael Duarte</b><span>结构工程师 · AST-11 乘员 · 2026</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="quote-card">
+                  <div class="qmark">"</div>
+                  <blockquote>我女儿画过 100 次火箭。现在她房间墙上挂着我们俩在空间站握手的那张合影，下面是她的字：'下一次，我自己上去'。</blockquote>
+                  <div class="quote-card__who">
+                    <span class="quote-card__av quote-card__av--ice">周</span>
+                    <div><b>周叙</b><span>纪录片导演 · AST-08 乘员 · 2026</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slider__foot">
+            <div class="slider__dots" aria-label="选择评价"></div>
+            <div class="slider__arrows">
+              <button class="icon-btn icon-btn--ice" data-slider-prev aria-label="上一条评价">←</button>
+              <button class="icon-btn icon-btn--ice" data-slider-next aria-label="下一条评价">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 常见问题 ================= -->
+    <section class="section" id="faq">
+      <div class="container">
+        <span class="sec-num">SEC 07 / FAQ</span>
+        <div class="duo">
+          <div class="manifesto__side">
+            <div class="overline">常见问题 · FAQ</div>
+            <h2 class="cn section-title" data-reveal="up">关于太空，你想问的</h2>
+            <p class="lead" data-reveal="up" style="--d:.08s">这里是最常被问到的问题。若仍有疑惑，我们的任务顾问 7×24 在线——毕竟，问问题也是一种探索。</p>
+            <div style="margin-top:.5rem;--d:.16s" data-reveal="up">
+              <a class="link-arrow" href="contact.html"><span class="txt">直接咨询顾问</span><span class="ico">→</span></a>
+            </div>
+          </div>
+
+          <div class="accordion" data-reveal="right">
+            <div class="acc-item open">
+              <button class="acc-btn" aria-expanded="true"><span class="q">我没有航天员背景，可以吗？</span><span class="plus" aria-hidden="true"></span></button>
+              <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">完全可以。远穹 90% 的旅客没有航天背景。你只需要通过健康评估（相当于一次增强版全身体检）与 12 周训练。失重状态下人人平等——这正是它的奇妙之处。</div></div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-btn" aria-expanded="false"><span class="q">整个旅程要花多长时间？</span><span class="plus" aria-hidden="true"></span></button>
+              <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">从申请到返航约 6–9 个月：2 周健康评估，12 周训练（可远程与周末班结合），1 周发射与驻留，以及返航后一年的免费健康跟踪。时间排期请参考票价页。</div></div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-btn" aria-expanded="false"><span class="q">在太空能吃什么、能洗澡吗？</span><span class="plus" aria-hidden="true"></span></button>
+              <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">极光号配备米其林顾问设计的零重力菜单：麻婆豆腐、红烧肉与冰淇淋都在菜单上。淋浴舱会回收 98% 的水，你甚至能体验"水球"洗头——这是地面绝对复刻不了的体验。</div></div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-btn" aria-expanded="false"><span class="q">如果发射被取消怎么办？</span><span class="plus" aria-hidden="true"></span></button>
+              <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">我们以"任务至上、生命至上"为准则。若因天气、技术原因取消，你拥有 12 个月内的任意改签权，且全额保留席位；若因个人健康原因无法成行，按条款可部分退款或转为候补金。</div></div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-btn" aria-expanded="false"><span class="q">是否支持分期付款？</span><span class="plus" aria-hidden="true"></span></button>
+              <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">支持。多数票种可 12 期免息分期，训练阶段仅付 20% 定金，发射前 30 天结清尾款。我们也与三家太空保险机构合作，覆盖发射、驻留与返航全程。</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section section--flush-top" id="cta">
+      <div class="container">
+        <div class="cta-banner" data-reveal="zoom">
+          <div class="aurora" aria-hidden="true">
+            <div class="aurora__blob aurora__blob--1" style="opacity:.35"></div>
+            <div class="aurora__blob aurora__blob--2" style="opacity:.3"></div>
+          </div>
+          <div class="overline overline--center" data-reveal="up">YOUR SEAT IS WAITING</div>
+          <h2 class="cta-banner__title cn" data-reveal="up" style="--d:.06s">下一个离开大气层的，<br />会是你吗？</h2>
+          <p class="lead" data-reveal="up" style="--d:.12s">远穹每年只执行 12 次载人任务，2027 年席位现已开放候补。选择你的起点，剩下的交给我们。</p>
+          <div class="cta-banner__actions" data-reveal="up" style="--d:.18s">
+            <a class="btn btn--primary btn--lg" data-magnetic href="contact.html">预约免费咨询 <span class="arrow">→</span></a>
+            <a class="btn btn--ghost btn--lg" data-magnetic href="pricing.html">查看票价与排期</a>
+          </div>
+          <div class="cta-banner__sats" data-reveal="up" style="--d:.24s">
+            <div class="row"><b>48</b><span>成功发射</span></div>
+            <div class="row"><b>312</b><span>太空旅客</span></div>
+            <div class="row"><b>6</b><span>座全球基地</span></div>
+            <div class="row"><b>24/7</b><span>任务热线</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= 页脚 ================= -->
+  <footer class="site-footer">
+    <div class="foot-cta">
+      <div class="container">
+        <div class="overline overline--center" data-reveal="up">ASTRUM · 远穹宇航</div>
+        <h2 class="foot-cta__title cn" data-reveal="up" style="--d:.06s">我们出发，<br /><span class="grad-text-fire">是为了更好地回来。</span></h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand-col">
+          <a class="brand" href="index.html" aria-label="远穹宇航首页">
+            <span class="brand__mark">
+              <svg viewBox="0 0 64 64" width="30" height="30" fill="none" style="color:#ff5a2e">
+                <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.7"/>
+                <ellipse cx="32" cy="32" rx="30" ry="8" stroke="#54e6e0" stroke-width="1" opacity="0.55" transform="rotate(-22 32 32)"/>
+                <path d="M32 11 L34.9 29.1 L53 32 L34.9 34.9 L32 53 L29.1 34.9 L11 32 L29.1 29.1 Z" fill="currentColor"/>
+                <circle cx="51" cy="17" r="3.6" fill="#54e6e0"/>
+              </svg>
+            </span>
+            <span class="brand__name">
+              <span class="brand__name-en">ASTRUM</span>
+              <span class="brand__name-cn">远 穹 宇 航</span>
+            </span>
+          </a>
+          <p>一家把"太空属于每一个人"当作信条的公司。设计、工程与梦想，在这里同时点火。</p>
+          <div class="foot-socials" aria-label="社交媒体">
+            <a class="foot-social" href="#" aria-label="微博">微</a>
+            <a class="foot-social" href="#" aria-label="微信公众号">信</a>
+            <a class="foot-social" href="#" aria-label="哔哩哔哩">B</a>
+            <a class="foot-social" href="#" aria-label="X 平台">X</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>探索</h4>
+          <div class="foot-links">
+            <a href="about.html">关于远穹</a>
+            <a href="work.html">任务档案</a>
+            <a href="services.html">服务与设施</a>
+            <a href="blog.html">洞察与报告</a>
+            <a href="work.html#ast09">极光号任务</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>计划</h4>
+          <div class="foot-links">
+            <a href="pricing.html">个人席位</a>
+            <a href="pricing.html#annual">企业包机</a>
+            <a href="services.html#edu">远穹学院</a>
+            <a href="pricing.html#compare">票种对比</a>
+            <a href="contact.html">加入我们</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>保持联络</h4>
+          <p style="color:var(--ink-3);font-size:var(--fs-sm);margin-bottom:1rem">订阅《星信》，每月一封来自轨道上的信。</p>
+          <div class="newsletter" data-newsletter>
+            <form data-validate data-form="newsletter" novalidate>
+              <div class="field" style="display:contents">
+                <label class="visually-hidden" for="nl-email">电子邮箱</label>
+                <input id="nl-email" type="email" name="email" placeholder="你的邮箱地址" required />
+              </div>
+              <button class="btn btn--primary btn--sm" type="submit">订阅</button>
+            </form>
+            <p class="ok-msg">✓ 欢迎加入星信，下一封信将从轨道寄出。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot-bottom">
+        <div>© <span class="js-year">2026</span> 远穹宇航 ASTRUM SPACE CO. · 保留所有权利</div>
+        <nav aria-label="法律信息">
+          <a href="#">隐私政策</a>
+          <a href="#">服务条款</a>
+          <a href="#">无障碍声明</a>
+        </nav>
+        <div class="mono-tag">引擎 v2026.9 · CSS / VANILLA JS</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="返回顶部">↑</button>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="任务影像预览">
+    <div class="lb-stage">
+      <div class="lb-media"></div>
+      <div class="lb-cap"><strong>任务预览</strong><span class="mono-tag">ASTRUM ARCHIVE</span></div>
+      <span class="lb-count"></span>
+      <button class="lb-close" aria-label="关闭">✕</button>
+      <button class="lb-nav lb-nav--prev" aria-label="上一个">←</button>
+      <button class="lb-nav lb-nav--next" aria-label="下一个">→</button>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

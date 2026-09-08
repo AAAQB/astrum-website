@@ -1,0 +1,68 @@
+/* ============================================================
+   ASTRUM 远穹 — 响应式微调
+   File : assets/css/responsive.css
+   ============================================================ */
+
+/* ---------- 0 → 479 : 小手机 ---------- */
+@media (max-width: 479px) {
+  :root { --gutter: 1.1rem; }
+  .hero__cta .btn { width: 100%; }
+  .foot-cta__actions .btn { width: 100%; }
+  .section-head--row { align-items: flex-start; }
+  .stat-strip { grid-template-columns: 1fr 1fr; }
+  .cd-col { min-width: 62px; }
+  .countdown { gap: 0.7rem; }
+}
+
+/* ---------- ≤ 767 : 平板以下 ---------- */
+@media (max-width: 767px) {
+  .hero__sideline { display: none; }
+  .nav-cta-desktop { display: none !important; }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+  .foot-brand-col { grid-column: 1 / -1; }
+  .newsletter form { grid-template-columns: 1fr; }
+  .newsletter form .btn { width: 100%; }
+  .launch-panel { max-width: none; }
+  .case-study__media { aspect-ratio: 4/3; }
+  .cta-banner { text-align: center; }
+  .quote-card blockquote { font-size: 1.1rem; }
+  .process__item { grid-template-columns: 1fr; gap: 0.8rem; }
+  .hero { min-height: 100svh; }
+}
+
+/* ---------- 768 → 1023 ---------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .foot-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .foot-brand-col { grid-column: 1 / -1; }
+}
+
+/* ---------- ≥ 480 : 桌面增强间距 ---------- */
+@media (min-width: 480px) {
+  .stat-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- ≥ 768 ---------- */
+@media (min-width: 768px) {
+  .stat-strip { grid-template-columns: repeat(4, 1fr); }
+  .foot-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; }
+}
+
+/* ---------- ≥ 1024 ---------- */
+@media (min-width: 1024px) {
+  .container { width: min(100% - var(--gutter) * 2, var(--container)); }
+  .process__item { grid-template-columns: 120px 1fr; }
+}
+
+/* ---------- ≥ 1280 ---------- */
+@media (min-width: 1280px) {
+  .hero__launch { justify-self: end; width: 100%; }
+}
+
+/* ---------- 打印 ---------- */
+@media print {
+  .preloader, .cursor-dot, .cursor-ring, .to-top, .scroll-progress,
+  .grain, .vignette, .site-header, .site-footer, .aurora, .scroll-cue,
+  .toast, .lightbox, .mobile-menu { display: none !important; }
+  body { background: #fff; color: #111; }
+  .section, main { padding-block: 1rem; }
+}

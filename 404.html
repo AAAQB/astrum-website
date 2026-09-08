@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 · 偏离轨道 · 远穹宇航 ASTRUM</title>
+  <meta name="theme-color" content="#05070d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070d'/%3E%3Cpath d='M32 12 L34.6 29.4 L52 32 L34.6 34.6 L32 52 L29.4 34.6 L12 32 L29.4 29.4 Z' fill='%23ff5a2e'/%3E%3Ccircle cx='50' cy='18' r='4' fill='%2354e6e0'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/effects.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__mark">
+        <svg viewBox="0 0 64 64" width="72" height="72" fill="none" style="color:#ff5a2e">
+          <circle cx="32" cy="32" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.6"/>
+          <ellipse cx="32" cy="32" rx="31" ry="9" stroke="#54e6e0" stroke-width="1" opacity="0.5" transform="rotate(-22 32 32)"/>
+          <path d="M32 10 L35 29.5 L54 32 L35 34.5 L32 54 L29 34.5 L10 32 L29 29.5 Z" fill="currentColor"/>
+          <circle cx="52" cy="18" r="3.6" fill="#54e6e0"/>
+        </svg>
+      </div>
+      <div class="preloader__name">ASTRUM</div>
+      <div class="preloader__bar"><span></span></div>
+      <div class="preloader__pct">000%</div>
+      <div class="preloader__status">校准推进器</div>
+    </div>
+  </div>
+
+  <main class="error-page" id="main">
+    <div class="aurora" aria-hidden="true" style="position:absolute;inset:0">
+      <div class="aurora__blob aurora__blob--1" style="opacity:.35"></div>
+      <div class="aurora__blob aurora__blob--3" style="opacity:.3"></div>
+    </div>
+    <div style="position:relative;text-align:center;display:grid;gap:var(--sp-6);justify-items:center">
+      <div class="overline overline--center overline--ice" data-reveal="up">信号丢失 · LOST IN ORBIT</div>
+      <div class="error-page__code hero-stagger">404</div>
+      <h1 class="cn" style="font-family:var(--font-serif);font-weight:900;font-size:clamp(1.8rem,4.4vw,3.2rem)" data-reveal="up">你要找的页面，偏离了预定轨道</h1>
+      <p class="lead" style="max-width:52ch" data-reveal="up">它可能被移动、删除，或正在前往另一个星系。我们正在努力把它拉回——不如先去别处转转？</p>
+      <div class="hero__cta" data-reveal="up" style="--d:.1s">
+        <a class="btn btn--primary btn--lg" data-magnetic href="index.html">返回地面（首页）<span class="arrow">→</span></a>
+        <a class="btn btn--ghost btn--lg" data-magnetic href="work.html">看看任务档案</a>
+      </div>
+      <div class="mono-tag" data-reveal="up" style="--d:.16s">ASTRUM · ERR 0x019 · 如有疑问请联系 ground control</div>
+    </div>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

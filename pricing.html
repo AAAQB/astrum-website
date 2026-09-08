@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>票价与排期 · 远穹宇航 ASTRUM</title>
+  <meta name="description" content="远穹票价：轨道观光、空间站驻留与企业包机。支持全款与 12 期分期，保险与候补保障覆盖全程。" />
+  <meta name="theme-color" content="#05070d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070d'/%3E%3Cpath d='M32 12 L34.6 29.4 L52 32 L34.6 34.6 L32 52 L29.4 34.6 L12 32 L29.4 29.4 Z' fill='%23ff5a2e'/%3E%3Ccircle cx='50' cy='18' r='4' fill='%2354e6e0'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/effects.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
+  <div class="cursor-ring" aria-hidden="true" style="opacity:0"><span class="cursor-label"></span></div>
+
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__mark">
+        <svg viewBox="0 0 64 64" width="72" height="72" fill="none" style="color:#ff5a2e">
+          <circle cx="32" cy="32" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.6"/>
+          <ellipse cx="32" cy="32" rx="31" ry="9" stroke="#54e6e0" stroke-width="1" opacity="0.5" transform="rotate(-22 32 32)"/>
+          <path d="M32 10 L35 29.5 L54 32 L35 34.5 L32 54 L29 34.5 L10 32 L29 29.5 Z" fill="currentColor"/>
+          <circle cx="52" cy="18" r="3.6" fill="#54e6e0"/>
+        </svg>
+      </div>
+      <div class="preloader__name">ASTRUM</div>
+      <div class="preloader__bar"><span></span></div>
+      <div class="preloader__pct">000%</div>
+      <div class="preloader__status">校准推进器</div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container-wide nav-inner">
+      <a class="brand" href="index.html" aria-label="远穹宇航 首页">
+        <span class="brand__mark"><svg viewBox="0 0 64 64" width="30" height="30" fill="none" style="color:#ff5a2e"><circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.7"/><ellipse cx="32" cy="32" rx="30" ry="8" stroke="#54e6e0" stroke-width="1" opacity="0.55" transform="rotate(-22 32 32)"/><path d="M32 11 L34.9 29.1 L53 32 L34.9 34.9 L32 53 L29.1 34.9 L11 32 L29.1 29.1 Z" fill="currentColor"/><circle cx="51" cy="17" r="3.6" fill="#54e6e0"/></svg></span>
+        <span class="brand__name"><span class="brand__name-en">ASTRUM</span><span class="brand__name-cn">远 穹 宇 航</span></span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a class="nav-link" href="index.html">首页</a>
+        <a class="nav-link" href="about.html">关于</a>
+        <a class="nav-link" href="services.html">服务</a>
+        <a class="nav-link" href="work.html">任务</a>
+        <a class="nav-link" href="blog.html">洞察</a>
+        <a class="nav-link active" href="pricing.html">票价</a>
+        <a class="nav-link" href="contact.html">联系</a>
+      </nav>
+      <div class="nav-right">
+        <a class="btn btn--primary btn--sm nav-cta-desktop" data-magnetic href="contact.html">立即启程 <span class="arrow">→</span></a>
+        <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false"><span class="bars"><span></span><span></span></span></button>
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="移动端导航">
+    <div class="mobile-menu__links">
+      <a class="mobile-menu__link" style="--d:.02s" href="index.html"><span class="idx">01</span>首页</a>
+      <a class="mobile-menu__link" style="--d:.06s" href="about.html"><span class="idx">02</span>关于</a>
+      <a class="mobile-menu__link" style="--d:.1s" href="services.html"><span class="idx">03</span>服务</a>
+      <a class="mobile-menu__link" style="--d:.14s" href="work.html"><span class="idx">04</span>任务</a>
+      <a class="mobile-menu__link" style="--d:.18s" href="blog.html"><span class="idx">05</span>洞察</a>
+      <a class="mobile-menu__link active" style="--d:.22s" href="pricing.html"><span class="idx">06</span>票价</a>
+      <a class="mobile-menu__link" style="--d:.26s" href="contact.html"><span class="idx">07</span>联系</a>
+    </div>
+    <div class="mobile-menu__foot"><span>© <span class="js-year">2026</span> 远穹宇航 · 面向全人类开放</span><span>hello@astrum.space</span></div>
+  </nav>
+
+  <main id="main">
+    <!-- 页头 -->
+    <section class="page-hero">
+      <div class="page-hero__bg aurora" aria-hidden="true">
+        <div class="aurora__blob aurora__blob--1" style="opacity:.38"></div>
+        <div class="aurora__blob aurora__blob--2" style="opacity:.32"></div>
+      </div>
+      <div class="container page-hero__inner hero-stagger">
+        <nav class="crumbs" aria-label="面包屑">
+          <a href="index.html">首页</a><span class="slash">/</span><span class="cur">票价</span>
+        </nav>
+        <div class="overline overline--dot">票价与排期 · TICKETS</div>
+        <h1 class="page-hero__title cn">
+          <span class="mask-line" style="--d:.05s"><span>梦想，不该是</span></span>
+          <span class="mask-line" style="--d:.16s"><span>只有富豪买得起的<span style="color:transparent;-webkit-text-stroke:1px var(--ice)">门票</span>。</span></span>
+        </h1>
+        <p class="lead" style="max-width:58ch">所有价格含训练、保险、餐食与返航健康跟踪。支持全款支付或 12 期免息分期——选择你更从容的那种。</p>
+      </div>
+    </section>
+
+    <!-- 票价卡 -->
+    <section class="section section--flush-top" id="tiers">
+      <div class="container" data-pricing>
+        <div class="section-head section-head--row">
+          <div class="section-head__inner">
+            <div class="overline overline--ice" data-reveal="up">席位选择 · CHOOSE</div>
+            <h2 class="cn section-title" data-reveal="up">三种方式，抵达同一片星空</h2>
+          </div>
+          <div class="price-toggle" data-reveal="up" role="group" aria-label="支付方式切换">
+            <button class="active" data-period="annual" aria-pressed="true">全款支付</button>
+            <button data-period="monthly" aria-pressed="false">12 期月付 <span class="save">-8%</span></button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3" style="align-items:stretch">
+          <!-- 观光 -->
+          <article class="card pricing-tier" data-reveal="up">
+            <div class="pricing-tier__name">观光之旅</div>
+            <p class="pricing-tier__desc">极光号 · 3 天低轨环游。适合第一次上太空的你。</p>
+            <div class="pricing-tier__price">
+              <span class="cur">¥</span>
+              <span class="price-val" data-annual="128" data-monthly="12">128</span>
+              <span class="per">万 / 席位</span>
+            </div>
+            <div class="pricing-tier__features">
+              <div class="pricing-tier__feature"><span class="ck">✓</span>3 天 2 夜轨道飞行</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>全套地面训练（12 周）</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>飞行保险与健康跟踪</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>家属观礼区 + 4K 直播</div>
+              <div class="pricing-tier__feature disabled"><span class="ck">✕</span>空间站对接驻留</div>
+              <div class="pricing-tier__feature disabled"><span class="ck">✕</span>太空漫步舱段</div>
+            </div>
+            <a class="btn btn--ghost" data-magnetic href="contact.html">申请候补席位</a>
+          </article>
+
+          <!-- 驻留会员 精选 -->
+          <article class="card pricing-tier is-featured" id="annual" data-reveal="up" style="--d:.08s">
+            <span class="pricing-tier__badge">最受欢迎</span>
+            <div class="pricing-tier__name">驻留会员</div>
+            <p class="pricing-tier__desc">曙光号空间站 · 8–30 天驻留。含观光全部权益。</p>
+            <div class="pricing-tier__price">
+              <span class="cur">¥</span>
+              <span class="price-val" data-annual="298" data-monthly="28">298</span>
+              <span class="per">万 / 席位</span>
+            </div>
+            <div class="pricing-tier__features">
+              <div class="pricing-tier__feature"><span class="ck">✓</span>观光之旅全部权益</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>空间站对接与私人睡眠舱</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>专属乘员摄影师随行</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>最多 2 项驻留实验名额</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>返航影像纪录长片</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>终身候补优先权</div>
+            </div>
+            <a class="btn btn--primary" data-magnetic href="contact.html">预订驻留席位 <span class="arrow">→</span></a>
+          </article>
+
+          <!-- 包机 -->
+          <article class="card pricing-tier" data-reveal="up" style="--d:.16s">
+            <div class="pricing-tier__name">企业包机</div>
+            <p class="pricing-tier__desc">整舱定制 · 适合企业与机构。品牌、议程、载荷全定制。</p>
+            <div class="pricing-tier__price">
+              <span class="cur"></span>
+              <span class="price-val" data-annual="询价" data-monthly="询价">询价</span>
+              <span class="per">按任务定制</span>
+            </div>
+            <div class="pricing-tier__features">
+              <div class="pricing-tier__feature"><span class="ck">✓</span>整舱 4–6 席位</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>企业徽标与品牌载荷</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>董事会级"零重力会议"</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>定制发射窗口</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>专属保障团队</div>
+              <div class="pricing-tier__feature"><span class="ck">✓</span>年度合作费率</div>
+            </div>
+            <a class="btn btn--ice" data-magnetic href="contact.html">获取包机报价</a>
+          </article>
+        </div>
+
+        <div class="hero__meta" style="justify-content:center;margin-top:var(--sp-6)">
+          <div class="hero__meta-item"><span class="v">3 家</span><span class="k">太空保险合作</span></div>
+          <div class="hero__meta-item"><span class="v">12 期</span><span class="k">免息分期</span></div>
+          <div class="hero__meta-item"><span class="v">12 个月</span><span class="k">免费改签</span></div>
+          <div class="hero__meta-item"><span class="v">100%</span><span class="k">报销或改签保障</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 对比表 -->
+    <section class="section section--tint" id="compare">
+      <div class="container">
+        <span class="sec-num">02 / 对比</span>
+        <div class="section-head">
+          <div class="overline overline--ice" data-reveal="up">票种对比 · COMPARE</div>
+          <h2 class="cn section-title" data-reveal="up">一页纸看懂差别</h2>
+        </div>
+        <div class="price-table-wrap" data-reveal="up">
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th scope="col">权益项</th>
+                <th scope="col">观光之旅</th>
+                <th scope="col">驻留会员</th>
+                <th scope="col">企业包机</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>低地球轨道飞行</td><td class="yes">是</td><td class="yes">是</td><td class="yes">是</td></tr>
+              <tr><td>舱内失重时长</td><td>≈72 h</td><td>192–720 h</td><td>定制</td></tr>
+              <tr><td>空间站对接</td><td class="no">—</td><td class="yes">曙光号</td><td class="yes">可选</td></tr>
+              <tr><td>太空漫步</td><td class="no">—</td><td class="yes">可选</td><td class="yes">可选</td></tr>
+              <tr><td>地面训练营</td><td>12 周</td><td>14 周</td><td>定制</td></tr>
+              <tr><td>摄影师随行</td><td class="no">—</td><td class="yes">1 名</td><td class="yes">可配</td></tr>
+              <tr><td>驻留实验名额</td><td class="no">—</td><td class="yes">2 项</td><td class="yes">定制</td></tr>
+              <tr><td>品牌载荷 / 徽标</td><td class="no">—</td><td class="yes">1 kg</td><td class="yes">按需</td></tr>
+              <tr><td>家属观礼</td><td class="yes">2 位</td><td class="yes">4 位</td><td class="yes">全场</td></tr>
+              <tr><td>分期支付</td><td class="yes">12 期</td><td class="yes">12 期</td><td class="no">对公</td></tr>
+              <tr><td>免费改签窗口</td><td>12 个月</td><td>18 个月</td><td>合同约定</td></tr>
+              <tr><td>最低年龄建议</td><td>16 岁*</td><td>18 岁</td><td>18 岁</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mono-tag" style="margin-top:1.2rem" data-reveal="up">* 16–17 岁需监护人同行。健康评估标准对所有票种一致。</p>
+      </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" id="faq">
+      <div class="container">
+        <span class="sec-num">03 / FAQ</span>
+        <div class="section-head section-head--row">
+          <div class="section-head__inner">
+            <div class="overline" data-reveal="up">付款与保障 · FAQ</div>
+            <h2 class="cn section-title" data-reveal="up">关于钱，一次说清</h2>
+          </div>
+        </div>
+
+        <div class="accordion" data-multi data-reveal="up">
+          <div class="acc-item open">
+            <button class="acc-btn" aria-expanded="true"><span class="q">价格包含哪些项目？</span><span class="plus" aria-hidden="true"></span></button>
+            <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">价格已包含：健康评估与 12 周训练、发射与轨道飞行、全程保险、餐食、飞行服、影像数据包，以及返航后 12 个月的免费健康跟踪。不包含：往返发射场的交通与地面住宿（可代办）。</div></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false"><span class="q">分期需要什么条件？</span><span class="plus" aria-hidden="true"></span></button>
+            <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">申请分期仅需通过健康评估并缴纳 20% 首付，其余 11 期在 12 个月内免息结清。审批通常在 5 个工作日内完成。企业包机支持对公付款与发票。</div></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false"><span class="q">如果因健康原因无法成行？</span><span class="plus" aria-hidden="true"></span></button>
+            <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">若在发射前 30 天以上因健康原因退出，可全额保留为 18 个月内的候补金，或退还 70% 现金；若在训练阶段发现不可逆健康问题，凭医疗证明可退还 85%。</div></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false"><span class="q">发射取消/延误如何补偿？</span><span class="plus" aria-hidden="true"></span></button>
+            <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">因天气或技术原因取消，你可无成本改签至未来 18 个月内任意班次，且顺延期间费用全免。若超过 18 个月仍未能执行，我们提供 105% 的退款（含 5% 补偿金）。</div></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false"><span class="q">学生与教师有优惠吗？</span><span class="plus" aria-hidden="true"></span></button>
+            <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">远穹学院学员、在职教师与科研人员可申请专项资助计划，最高覆盖票价的 60%。资助名额每年 20 席，需提交个人陈述与推荐信。</div></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false"><span class="q">可以多人同行拼舱吗？</span><span class="plus" aria-hidden="true"></span></button>
+            <div class="acc-panel"><div class="acc-body"><div class="acc-body__inner">可以。3 人以上同时预订享 5% 同行优惠；整舱包机则完全由你们决定乘客名单——很多家庭与创始团队都选择这种方式。</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="foot-cta">
+      <div class="container">
+        <div class="overline overline--center" data-reveal="up">STILL DECIDING?</div>
+        <h2 class="foot-cta__title cn" data-reveal="up" style="--d:.06s">先聊一聊，<br /><span class="grad-text-fire">不急着付钱。</span></h2>
+        <div class="foot-cta__actions" data-reveal="up" style="--d:.12s">
+          <a class="btn btn--primary btn--lg" data-magnetic href="contact.html">预约 30 分钟咨询 <span class="arrow">→</span></a>
+          <a class="btn btn--ghost btn--lg" data-magnetic href="work.html">看往期乘员怎么说</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand-col">
+          <a class="brand" href="index.html" aria-label="远穹宇航首页">
+            <span class="brand__mark"><svg viewBox="0 0 64 64" width="30" height="30" fill="none" style="color:#ff5a2e"><circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.7"/><ellipse cx="32" cy="32" rx="30" ry="8" stroke="#54e6e0" stroke-width="1" opacity="0.55" transform="rotate(-22 32 32)"/><path d="M32 11 L34.9 29.1 L53 32 L34.9 34.9 L32 53 L29.1 34.9 L11 32 L29.1 29.1 Z" fill="currentColor"/><circle cx="51" cy="17" r="3.6" fill="#54e6e0"/></svg></span>
+            <span class="brand__name"><span class="brand__name-en">ASTRUM</span><span class="brand__name-cn">远 穹 宇 航</span></span>
+          </a>
+          <p>一家把"太空属于每一个人"当作信条的公司。设计、工程与梦想，在这里同时点火。</p>
+          <div class="foot-socials" aria-label="社交媒体">
+            <a class="foot-social" href="#" aria-label="微博">微</a>
+            <a class="foot-social" href="#" aria-label="微信公众号">信</a>
+            <a class="foot-social" href="#" aria-label="哔哩哔哩">B</a>
+            <a class="foot-social" href="#" aria-label="X 平台">X</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>探索</h4>
+          <div class="foot-links">
+            <a href="about.html">关于远穹</a>
+            <a href="work.html">任务档案</a>
+            <a href="services.html">服务与设施</a>
+            <a href="blog.html">洞察与报告</a>
+            <a href="work.html#ast09">极光号任务</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>计划</h4>
+          <div class="foot-links">
+            <a href="pricing.html">个人席位</a>
+            <a href="pricing.html#annual">企业包机</a>
+            <a href="services.html#edu">远穹学院</a>
+            <a href="pricing.html#compare">票种对比</a>
+            <a href="contact.html">加入我们</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>保持联络</h4>
+          <p style="color:var(--ink-3);font-size:var(--fs-sm);margin-bottom:1rem">订阅《星信》，每月一封来自轨道上的信。</p>
+          <div class="newsletter" data-newsletter>
+            <form data-validate data-form="newsletter" novalidate>
+              <div class="field" style="display:contents">
+                <label class="visually-hidden" for="nl-email">电子邮箱</label>
+                <input id="nl-email" type="email" name="email" placeholder="你的邮箱地址" required />
+              </div>
+              <button class="btn btn--primary btn--sm" type="submit">订阅</button>
+            </form>
+            <p class="ok-msg">✓ 欢迎加入星信，下一封信将从轨道寄出。</p>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <div>© <span class="js-year">2026</span> 远穹宇航 ASTRUM SPACE CO. · 保留所有权利</div>
+        <nav aria-label="法律信息">
+          <a href="#">隐私政策</a>
+          <a href="#">服务条款</a>
+          <a href="#">无障碍声明</a>
+        </nav>
+        <div class="mono-tag">引擎 v2026.9 · CSS / VANILLA JS</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="返回顶部">↑</button>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="任务影像预览">
+    <div class="lb-stage">
+      <div class="lb-media"></div>
+      <div class="lb-cap"><strong>任务预览</strong><span class="mono-tag">ASTRUM ARCHIVE</span></div>
+      <span class="lb-count"></span>
+      <button class="lb-close" aria-label="关闭">✕</button>
+      <button class="lb-nav lb-nav--prev" aria-label="上一个">←</button>
+      <button class="lb-nav lb-nav--next" aria-label="下一个">→</button>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

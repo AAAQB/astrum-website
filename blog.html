@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>洞察与报告 · 远穹宇航 ASTRUM</title>
+  <meta name="description" content="远穹洞察：任务后记、空间技术科普、太空旅行指南与行业报告。" />
+  <meta name="theme-color" content="#05070d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070d'/%3E%3Cpath d='M32 12 L34.6 29.4 L52 32 L34.6 34.6 L32 52 L29.4 34.6 L12 32 L29.4 29.4 Z' fill='%23ff5a2e'/%3E%3Ccircle cx='50' cy='18' r='4' fill='%2354e6e0'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/effects.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
+  <div class="cursor-ring" aria-hidden="true" style="opacity:0"><span class="cursor-label"></span></div>
+
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__mark">
+        <svg viewBox="0 0 64 64" width="72" height="72" fill="none" style="color:#ff5a2e">
+          <circle cx="32" cy="32" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.6"/>
+          <ellipse cx="32" cy="32" rx="31" ry="9" stroke="#54e6e0" stroke-width="1" opacity="0.5" transform="rotate(-22 32 32)"/>
+          <path d="M32 10 L35 29.5 L54 32 L35 34.5 L32 54 L29 34.5 L10 32 L29 29.5 Z" fill="currentColor"/>
+          <circle cx="52" cy="18" r="3.6" fill="#54e6e0"/>
+        </svg>
+      </div>
+      <div class="preloader__name">ASTRUM</div>
+      <div class="preloader__bar"><span></span></div>
+      <div class="preloader__pct">000%</div>
+      <div class="preloader__status">校准推进器</div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container-wide nav-inner">
+      <a class="brand" href="index.html" aria-label="远穹宇航 首页">
+        <span class="brand__mark"><svg viewBox="0 0 64 64" width="30" height="30" fill="none" style="color:#ff5a2e"><circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.7"/><ellipse cx="32" cy="32" rx="30" ry="8" stroke="#54e6e0" stroke-width="1" opacity="0.55" transform="rotate(-22 32 32)"/><path d="M32 11 L34.9 29.1 L53 32 L34.9 34.9 L32 53 L29.1 34.9 L11 32 L29.1 29.1 Z" fill="currentColor"/><circle cx="51" cy="17" r="3.6" fill="#54e6e0"/></svg></span>
+        <span class="brand__name"><span class="brand__name-en">ASTRUM</span><span class="brand__name-cn">远 穹 宇 航</span></span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a class="nav-link" href="index.html">首页</a>
+        <a class="nav-link" href="about.html">关于</a>
+        <a class="nav-link" href="services.html">服务</a>
+        <a class="nav-link" href="work.html">任务</a>
+        <a class="nav-link active" href="blog.html">洞察</a>
+        <a class="nav-link" href="pricing.html">票价</a>
+        <a class="nav-link" href="contact.html">联系</a>
+      </nav>
+      <div class="nav-right">
+        <a class="btn btn--primary btn--sm nav-cta-desktop" data-magnetic href="contact.html">立即启程 <span class="arrow">→</span></a>
+        <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false"><span class="bars"><span></span><span></span></span></button>
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="移动端导航">
+    <div class="mobile-menu__links">
+      <a class="mobile-menu__link" style="--d:.02s" href="index.html"><span class="idx">01</span>首页</a>
+      <a class="mobile-menu__link" style="--d:.06s" href="about.html"><span class="idx">02</span>关于</a>
+      <a class="mobile-menu__link" style="--d:.1s" href="services.html"><span class="idx">03</span>服务</a>
+      <a class="mobile-menu__link" style="--d:.14s" href="work.html"><span class="idx">04</span>任务</a>
+      <a class="mobile-menu__link active" style="--d:.18s" href="blog.html"><span class="idx">05</span>洞察</a>
+      <a class="mobile-menu__link" style="--d:.22s" href="pricing.html"><span class="idx">06</span>票价</a>
+      <a class="mobile-menu__link" style="--d:.26s" href="contact.html"><span class="idx">07</span>联系</a>
+    </div>
+    <div class="mobile-menu__foot"><span>© <span class="js-year">2026</span> 远穹宇航 · 面向全人类开放</span><span>hello@astrum.space</span></div>
+  </nav>
+
+  <main id="main">
+    <!-- 页头 -->
+    <section class="page-hero">
+      <div class="page-hero__bg aurora" aria-hidden="true">
+        <div class="aurora__blob aurora__blob--3" style="opacity:.4"></div>
+      </div>
+      <div class="container page-hero__inner hero-stagger">
+        <nav class="crumbs" aria-label="面包屑">
+          <a href="index.html">首页</a><span class="slash">/</span><span class="cur">洞察</span>
+        </nav>
+        <div class="overline overline--dot">洞察与报告 · JOURNAL</div>
+        <h1 class="page-hero__title cn">
+          <span class="mask-line" style="--d:.05s"><span>把轨道上的答案，</span></span>
+          <span class="mask-line" style="--d:.16s"><span>写回人间。</span></span>
+        </h1>
+        <p class="lead" style="max-width:56ch">任务后记、太空科普、旅行者指南与行业白皮书。我们相信：越是尖端的技术，越该用朴素的话讲清楚。</p>
+      </div>
+    </section>
+
+    <!-- 精选文章 -->
+    <section class="section section--flush-top" id="featured">
+      <div class="container">
+        <div class="blog-featured" data-reveal="up">
+          <div class="blog-featured__media fade-media">
+            <div class="poster poster--solar">
+              <div class="poster__noise"></div>
+              <div class="poster__glyph">✒</div>
+              <span class="poster__code">LONG READ / 12 MIN</span>
+              <div class="poster-veil"></div>
+            </div>
+            <span class="chip mission-card__tag" style="top:var(--sp-5);left:var(--sp-5)"><span class="dot"></span>编辑部精选</span>
+          </div>
+          <div class="blog-featured__body">
+            <div class="post-card__cat">任务后记 · MISSION REPORT</div>
+            <h2><a class="hover-underline" href="#reading">极光号后记：64 次日出，教会我们重新计时</a></h2>
+            <p class="lead" style="font-size:var(--fs-body);color:var(--ink-2)">在 420 公里之上，地球每 92 分钟转完一圈。乘员们在 4 天里看完了 64 次日出——而这一次，是我们第一次把"时间"两个字真正看明白。</p>
+            <div class="post-card__meta">
+              <span>作者 · 顾长河</span><span class="sep">/</span><span>2026.06.02</span><span class="sep">/</span><span>阅读 12 分钟</span>
+            </div>
+            <div>
+              <a class="btn btn--ghost" data-magnetic href="#reading">开始阅读 <span class="arrow">↓</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 文章列表 -->
+    <section class="section section--tight" id="latest">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <div class="section-head__inner">
+            <div class="overline overline--ice" data-reveal="up">最新文章 · LATEST</div>
+            <h2 class="cn section-title" data-reveal="up">最近我们写了什么</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3">
+          <article class="post-card" data-reveal="up">
+            <div class="post-card__media fade-media">
+              <div class="poster poster--ice"><div class="poster__noise"></div><div class="poster__glyph">❄</div><div class="poster-veil"></div></div>
+            </div>
+            <div class="post-card__cat">科普 · EXPLAINER</div>
+            <h3 class="post-card__title"><a href="#" data-toast-msg="示例文章：为什么空间站每 92 分钟绕地球一圈？完整内容建设中">为什么空间站每 92 分钟绕地球一圈？</a></h3>
+            <div class="post-card__meta"><span>2026.07.19</span><span class="sep">/</span><span>6 分钟</span></div>
+            <p class="post-card__excerpt">速度、高度与轨道周期之间的浪漫公式——以及为什么"快"反而让日出变"慢"。</p>
+          </article>
+
+          <article class="post-card" data-reveal="up" style="--d:.08s">
+            <div class="post-card__media fade-media">
+              <div class="poster poster--aurora"><div class="poster__noise"></div><div class="poster__glyph">☾</div><div class="poster-veil"></div></div>
+            </div>
+            <div class="post-card__cat">旅行者指南 · GUIDE</div>
+            <h3 class="post-card__title"><a href="#" data-toast-msg="示例文章：第一次上太空该带什么？空间站行李清单。完整内容建设中">第一次上太空该带什么：空间站行李清单</a></h3>
+            <div class="post-card__meta"><span>2026.07.02</span><span class="sep">/</span><span>5 分钟</span></div>
+            <p class="post-card__excerpt">从一枚地球仪吊坠，到被遗忘的 18 条袜带——老乘员的血泪建议都在这。</p>
+          </article>
+
+          <article class="post-card" data-reveal="up" style="--d:.16s">
+            <div class="post-card__media fade-media">
+              <div class="poster poster--circuit"><div class="poster__noise"></div><div class="poster__glyph">⌁</div><div class="poster-veil"></div></div>
+            </div>
+            <div class="post-card__cat">工程 · ENGINEERING</div>
+            <h3 class="post-card__title"><a href="#" data-toast-msg="示例文章：我们如何把发射容错做到行业 4 倍。完整内容建设中">4 倍容错：我们为什么"慢"着造火箭</a></h3>
+            <div class="post-card__meta"><span>2026.06.20</span><span class="sep">/</span><span>9 分钟</span></div>
+            <p class="post-card__excerpt">多出的 20% 迭代时间换来了什么？一枚火箭工程师写给时间的检讨书。</p>
+          </article>
+
+          <article class="post-card" data-reveal="up">
+            <div class="post-card__media fade-media">
+              <div class="poster poster--nebula"><div class="poster__noise"></div><div class="poster__glyph">✧</div><div class="poster-veil"></div></div>
+            </div>
+            <div class="post-card__cat">教育 · ACADEMY</div>
+            <h3 class="post-card__title"><a href="#" data-toast-msg="示例文章：27 个学生实验升空后，孩子们变了。完整内容建设中">27 个学生实验升空之后</a></h3>
+            <div class="post-card__meta"><span>2026.05.30</span><span class="sep">/</span><span>7 分钟</span></div>
+            <p class="post-card__excerpt">当 14 岁的实验真被送进轨道，教室里的引力场会如何改变？一位老师的观察笔记。</p>
+          </article>
+
+          <article class="post-card" data-reveal="up" style="--d:.08s">
+            <div class="post-card__media fade-media">
+              <div class="poster poster--mist"><div class="poster__noise"></div><div class="poster__glyph">☁</div><div class="poster-veil"></div></div>
+            </div>
+            <div class="post-card__cat">白皮书 · WHITE PAPER</div>
+            <h3 class="post-card__title"><a href="#" data-toast-msg="示例文章：2026 太空旅行行业年度观察。完整内容建设中">2026 太空旅行年度观察（摘要）</a></h3>
+            <div class="post-card__meta"><span>2026.05.12</span><span class="sep">/</span><span>15 分钟</span></div>
+            <p class="post-card__excerpt">票价曲线、安全记录与"平民乘组"的年龄分布——五个图看懂这一年的轨道。</p>
+          </article>
+
+          <article class="post-card" data-reveal="up" style="--d:.16s">
+            <div class="post-card__media fade-media">
+              <div class="poster poster--grid"><div class="poster__noise"></div><div class="poster__glyph">◈</div><div class="poster-veil"></div></div>
+            </div>
+            <div class="post-card__cat">文化 · CULTURE</div>
+            <h3 class="post-card__title"><a href="#" data-toast-msg="示例文章：在太空写一首诗是什么感觉？完整内容建设中">在太空写诗：艺术家驻留首周手记</a></h3>
+            <div class="post-card__meta"><span>2026.04.25</span><span class="sep">/</span><span>8 分钟</span></div>
+            <p class="post-card__excerpt">没有重力之后，连"落下"都有了新含义。驻站诗人的第一篇随笔。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 长文阅读区 -->
+    <section class="section section--tint" id="reading">
+      <div class="container" style="max-width:880px">
+        <span class="sec-num">精选长文 · LONG READ</span>
+        <div class="overline overline--ice" data-reveal="up">任务后记 · 2026.06.02 · 顾长河</div>
+        <h2 class="cn" style="font-family:var(--font-serif);font-weight:900;font-size:clamp(1.7rem,3.4vw,2.7rem);line-height:1.4;margin-top:1.2rem" data-reveal="up">极光号后记：64 次日出，教会我们重新计时</h2>
+        <p class="lead" style="margin-top:1.2rem" data-reveal="up">乘员 6 人 · 轨道高度 420 km · 任务时长 92 小时 14 分</p>
+
+        <nav class="post-toc" aria-label="文章目录" style="margin-block:2.5rem" data-reveal="up">
+          <a href="#s1"><span>一、在地球之外，时间第一次显出原形</span><span class="t">§01</span></a>
+          <a href="#s2"><span>二、64 次日出里的 6 个故事</span><span class="t">§02</span></a>
+          <a href="#s3"><span>三、返航之后，我们重新学习入睡</span><span class="t">§03</span></a>
+        </nav>
+
+        <article class="prose" data-reveal="up">
+          <h2 id="s1">一、在地球之外，时间第一次显出原形</h2>
+          <p>发射前夜，任务医生提醒我："在轨道上，你的身体会以为自己在倒着过日子。"我笑了笑，没有当真。直到入轨后的第一个夜晚——透过全景穹顶舱，我看见了第一次日出，而它只用了大约 46 分钟就再次降临。</p>
+          <p>地球每 92 分钟自转一圈的真相，不是读出来的，而是<strong>身体</strong>体会出来的。乘员苏珊在第二天早晨用舷窗边的计时器给我们演示：当她数到第 90 下的时候，晨昏线正从太平洋的边缘爬上来，像一柄发光的尺，慢慢量过整片大陆。</p>
+          <blockquote>在轨道上，没有"今天"和"明天"，只有"这一圈"和"下一圈"。日出不再是闹钟，而是一盏每隔 92 分钟就为你重新亮起的灯。</blockquote>
+          <p>我们把舱内时钟全部调成了"圈数制"。第 3 圈起床，第 7 圈用餐，第 12 圈做实验。奇怪的是，没有人觉得混乱——我们的身体似乎比想象中更擅长记住这种节奏，像候鸟记住磁场。</p>
+
+          <h2 id="s2">二、64 次日出里的 6 个故事</h2>
+          <p>任务手册上写着"64 次日出"，但这个数字对每个人来说都不一样。</p>
+          <p>28 岁的程序员阿凯在第 9 次日出时放弃了"打卡拍照"，他后来在报告里写："你没法拍下日出，你只能记住它。"71 岁的周医生则每天坚持把日出画在速写本上——64 幅小画，每一幅的云都不一样，像地球每天换一张脸。</p>
+          <p>最沉默的是我们的随船工程师玛丽亚。她在第 41 次日出时第一次开口说起往事：她的父亲是渔民，一辈子都在追赶日出。她说，"原来他追了一辈子的东西，是这么完整的。"</p>
+          <p class="pull-quote">你没法拍下日出，你只能记住它。——乘员手记，第 3 圈</p>
+          <p>科学家们要的则是精确：64 次日出中，我们完成了 9 项微重力实验，包括一组关于晶体生长的对照实验。遥测数据显示，第 50 圈之后乘员的入睡速度明显加快——身体终于学会了它的新钟。</p>
+
+          <h2 id="s3">三、返航之后，我们重新学习入睡</h2>
+          <p>返回舱落水的那一刻，所有人都在笑，除了苏珊。她在哭。她说不是难过，"是地球太吵了"——风、浪、鸟叫，还有手机里 6 天攒下的 300 条消息。</p>
+          <p>返航后的第一周，6 位乘员不约而同地失眠。不是因为时差，而是因为"夜晚"这个概念重新回来了——没有了每 92 分钟一次的日出，黑夜变得漫长而陌生。周医生在随访里写了一句让我记到现在的话：</p>
+          <blockquote>我们去太空寻找远方，回来时却发现，真正被改变的，是我们看待"此刻"的方式。</blockquote>
+          <p>一个月后的回访中，6 人里有 5 人说他们会再次申请飞行。剩下的那一位说，她要把名额让给女儿："我已经把 64 次日出装在心里了，够用一辈子。"</p>
+          <p style="color:var(--ink-4)">—— 完 ——</p>
+        </article>
+
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--line-1)" data-reveal="up">
+          <div class="post-card__cat">标签 · 极光号 / 轨道观光 / 乘员手记</div>
+          <a class="link-arrow" href="#featured"><span class="txt">返回文章列表</span><span class="ico">↑</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="foot-cta">
+      <div class="container">
+        <div class="overline overline--center" data-reveal="up">WRITE YOUR OWN STORY</div>
+        <h2 class="foot-cta__title cn" data-reveal="up" style="--d:.06s">别人的故事看完了，<br /><span class="grad-text-fire">该写你自己的了。</span></h2>
+        <div class="foot-cta__actions" data-reveal="up" style="--d:.12s">
+          <a class="btn btn--primary btn--lg" data-magnetic href="contact.html">预约免费咨询 <span class="arrow">→</span></a>
+          <a class="btn btn--ghost btn--lg" data-magnetic href="work.html">看看往期任务</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand-col">
+          <a class="brand" href="index.html" aria-label="远穹宇航首页">
+            <span class="brand__mark"><svg viewBox="0 0 64 64" width="30" height="30" fill="none" style="color:#ff5a2e"><circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.7"/><ellipse cx="32" cy="32" rx="30" ry="8" stroke="#54e6e0" stroke-width="1" opacity="0.55" transform="rotate(-22 32 32)"/><path d="M32 11 L34.9 29.1 L53 32 L34.9 34.9 L32 53 L29.1 34.9 L11 32 L29.1 29.1 Z" fill="currentColor"/><circle cx="51" cy="17" r="3.6" fill="#54e6e0"/></svg></span>
+            <span class="brand__name"><span class="brand__name-en">ASTRUM</span><span class="brand__name-cn">远 穹 宇 航</span></span>
+          </a>
+          <p>一家把"太空属于每一个人"当作信条的公司。设计、工程与梦想，在这里同时点火。</p>
+          <div class="foot-socials" aria-label="社交媒体">
+            <a class="foot-social" href="#" aria-label="微博">微</a>
+            <a class="foot-social" href="#" aria-label="微信公众号">信</a>
+            <a class="foot-social" href="#" aria-label="哔哩哔哩">B</a>
+            <a class="foot-social" href="#" aria-label="X 平台">X</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>探索</h4>
+          <div class="foot-links">
+            <a href="about.html">关于远穹</a>
+            <a href="work.html">任务档案</a>
+            <a href="services.html">服务与设施</a>
+            <a href="blog.html">洞察与报告</a>
+            <a href="work.html#ast09">极光号任务</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>计划</h4>
+          <div class="foot-links">
+            <a href="pricing.html">个人席位</a>
+            <a href="pricing.html#annual">企业包机</a>
+            <a href="services.html#edu">远穹学院</a>
+            <a href="pricing.html#compare">票种对比</a>
+            <a href="contact.html">加入我们</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>保持联络</h4>
+          <p style="color:var(--ink-3);font-size:var(--fs-sm);margin-bottom:1rem">订阅《星信》，每月一封来自轨道上的信。</p>
+          <div class="newsletter" data-newsletter>
+            <form data-validate data-form="newsletter" novalidate>
+              <div class="field" style="display:contents">
+                <label class="visually-hidden" for="nl-email">电子邮箱</label>
+                <input id="nl-email" type="email" name="email" placeholder="你的邮箱地址" required />
+              </div>
+              <button class="btn btn--primary btn--sm" type="submit">订阅</button>
+            </form>
+            <p class="ok-msg">✓ 欢迎加入星信，下一封信将从轨道寄出。</p>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <div>© <span class="js-year">2026</span> 远穹宇航 ASTRUM SPACE CO. · 保留所有权利</div>
+        <nav aria-label="法律信息">
+          <a href="#">隐私政策</a>
+          <a href="#">服务条款</a>
+          <a href="#">无障碍声明</a>
+        </nav>
+        <div class="mono-tag">引擎 v2026.9 · CSS / VANILLA JS</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="返回顶部">↑</button>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="任务影像预览">
+    <div class="lb-stage">
+      <div class="lb-media"></div>
+      <div class="lb-cap"><strong>任务预览</strong><span class="mono-tag">ASTRUM ARCHIVE</span></div>
+      <span class="lb-count"></span>
+      <button class="lb-close" aria-label="关闭">✕</button>
+      <button class="lb-nav lb-nav--prev" aria-label="上一个">←</button>
+      <button class="lb-nav lb-nav--next" aria-label="下一个">→</button>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

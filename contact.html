@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>联系我们 · 远穹宇航 ASTRUM</title>
+  <meta name="description" content="联系远穹宇航：预约咨询、载荷报价、企业包机、媒体与加入我们。任务顾问 7×24 在线。" />
+  <meta name="theme-color" content="#05070d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070d'/%3E%3Cpath d='M32 12 L34.6 29.4 L52 32 L34.6 34.6 L32 52 L29.4 34.6 L12 32 L29.4 29.4 Z' fill='%23ff5a2e'/%3E%3Ccircle cx='50' cy='18' r='4' fill='%2354e6e0'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/effects.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
+  <div class="cursor-ring" aria-hidden="true" style="opacity:0"><span class="cursor-label"></span></div>
+
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__mark">
+        <svg viewBox="0 0 64 64" width="72" height="72" fill="none" style="color:#ff5a2e">
+          <circle cx="32" cy="32" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.6"/>
+          <ellipse cx="32" cy="32" rx="31" ry="9" stroke="#54e6e0" stroke-width="1" opacity="0.5" transform="rotate(-22 32 32)"/>
+          <path d="M32 10 L35 29.5 L54 32 L35 34.5 L32 54 L29 34.5 L10 32 L29 29.5 Z" fill="currentColor"/>
+          <circle cx="52" cy="18" r="3.6" fill="#54e6e0"/>
+        </svg>
+      </div>
+      <div class="preloader__name">ASTRUM</div>
+      <div class="preloader__bar"><span></span></div>
+      <div class="preloader__pct">000%</div>
+      <div class="preloader__status">校准推进器</div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container-wide nav-inner">
+      <a class="brand" href="index.html" aria-label="远穹宇航 首页">
+        <span class="brand__mark"><svg viewBox="0 0 64 64" width="30" height="30" fill="none" style="color:#ff5a2e"><circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.7"/><ellipse cx="32" cy="32" rx="30" ry="8" stroke="#54e6e0" stroke-width="1" opacity="0.55" transform="rotate(-22 32 32)"/><path d="M32 11 L34.9 29.1 L53 32 L34.9 34.9 L32 53 L29.1 34.9 L11 32 L29.1 29.1 Z" fill="currentColor"/><circle cx="51" cy="17" r="3.6" fill="#54e6e0"/></svg></span>
+        <span class="brand__name"><span class="brand__name-en">ASTRUM</span><span class="brand__name-cn">远 穹 宇 航</span></span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a class="nav-link" href="index.html">首页</a>
+        <a class="nav-link" href="about.html">关于</a>
+        <a class="nav-link" href="services.html">服务</a>
+        <a class="nav-link" href="work.html">任务</a>
+        <a class="nav-link" href="blog.html">洞察</a>
+        <a class="nav-link" href="pricing.html">票价</a>
+        <a class="nav-link active" href="contact.html">联系</a>
+      </nav>
+      <div class="nav-right">
+        <a class="btn btn--primary btn--sm nav-cta-desktop" data-magnetic href="contact.html">立即启程 <span class="arrow">→</span></a>
+        <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false"><span class="bars"><span></span><span></span></span></button>
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="移动端导航">
+    <div class="mobile-menu__links">
+      <a class="mobile-menu__link" style="--d:.02s" href="index.html"><span class="idx">01</span>首页</a>
+      <a class="mobile-menu__link" style="--d:.06s" href="about.html"><span class="idx">02</span>关于</a>
+      <a class="mobile-menu__link" style="--d:.1s" href="services.html"><span class="idx">03</span>服务</a>
+      <a class="mobile-menu__link" style="--d:.14s" href="work.html"><span class="idx">04</span>任务</a>
+      <a class="mobile-menu__link" style="--d:.18s" href="blog.html"><span class="idx">05</span>洞察</a>
+      <a class="mobile-menu__link" style="--d:.22s" href="pricing.html"><span class="idx">06</span>票价</a>
+      <a class="mobile-menu__link active" style="--d:.26s" href="contact.html"><span class="idx">07</span>联系</a>
+    </div>
+    <div class="mobile-menu__foot"><span>© <span class="js-year">2026</span> 远穹宇航 · 面向全人类开放</span><span>hello@astrum.space</span></div>
+  </nav>
+
+  <main id="main">
+    <!-- 页头 -->
+    <section class="page-hero">
+      <div class="page-hero__bg aurora" aria-hidden="true">
+        <div class="aurora__blob aurora__blob--1" style="opacity:.4"></div>
+        <div class="aurora__blob aurora__blob--2" style="opacity:.3"></div>
+        <div class="aurora__blob aurora__blob--3" style="opacity:.3"></div>
+      </div>
+      <div class="container page-hero__inner hero-stagger">
+        <nav class="crumbs" aria-label="面包屑">
+          <a href="index.html">首页</a><span class="slash">/</span><span class="cur">联系</span>
+        </nav>
+        <div class="overline overline--dot">联系我们 · GROUND CONTROL</div>
+        <h1 class="page-hero__title cn">
+          <span class="mask-line" style="--d:.05s"><span>发射塔上有人，</span></span>
+          <span class="mask-line" style="--d:.16s"><span>控制中心也有人。</span></span>
+        </h1>
+        <p class="lead" style="max-width:56ch">无论你想订一张票、送一颗星，还是问一个关于失重的问题——留言吧。真人顾问 24 小时内回复，任务热线 7×24 待命。</p>
+      </div>
+    </section>
+
+    <!-- 联系主体 -->
+    <section class="section section--flush-top" id="contact-body">
+      <div class="container">
+        <div class="duo" style="align-items:start">
+          <!-- 表单 -->
+          <div class="card" style="padding:clamp(1.6rem,3.5vw,2.6rem)" data-reveal="left">
+            <div class="mono-tag" style="color:var(--ember-2)">SEND A SIGNAL · 发送讯号</div>
+            <h2 class="cn" style="font-family:var(--font-serif);font-weight:900;font-size:var(--fs-h3);margin:1rem 0 1.6rem">告诉我们你想去哪</h2>
+
+            <form data-validate data-form="contact" novalidate style="display:grid;gap:1.2rem">
+              <div class="grid grid-cols-2" style="gap:1rem">
+                <div class="field">
+                  <label for="c-name">你的称呼 *</label>
+                  <input id="c-name" name="name" type="text" placeholder="如何称呼你" required autocomplete="name" />
+                  <span class="field__msg">请填写称呼</span>
+                </div>
+                <div class="field">
+                  <label for="c-email">电子邮箱 *</label>
+                  <input id="c-email" name="email" type="email" placeholder="name@example.com" required autocomplete="email" />
+                  <span class="field__msg">请填写有效邮箱</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2" style="gap:1rem">
+                <div class="field">
+                  <label for="c-phone">联系电话</label>
+                  <input id="c-phone" name="phone" type="tel" placeholder="选填" autocomplete="tel" />
+                  <span class="field__msg">号码格式似乎不对</span>
+                </div>
+                <div class="field">
+                  <label for="c-intent">想了解 *</label>
+                  <div class="form-select-wrap">
+                    <select id="c-intent" name="intent" required>
+                      <option value="">请选择…</option>
+                      <option>观光席位 · 个人</option>
+                      <option>驻留会员 · 空间站</option>
+                      <option>载荷 / 卫星发射</option>
+                      <option>企业包机 / 团建</option>
+                      <option>远穹学院 / 教育合作</option>
+                      <option>媒体 / 合作</option>
+                      <option>加入远穹</option>
+                    </select>
+                  </div>
+                  <span class="field__msg">请选择意向</span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="c-msg">留言 *</label>
+                <textarea id="c-msg" name="message" placeholder="说说你的问题或计划…" required></textarea>
+                <span class="field__msg">请填写留言内容</span>
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+                <span class="mono-tag">平均回复时间 &lt; 6 小时</span>
+                <button class="btn btn--primary btn--lg" type="submit">发送讯号 <span class="arrow">→</span></button>
+              </div>
+            </form>
+          </div>
+
+          <!-- 信息卡 -->
+          <aside style="display:grid;gap:var(--sp-5)">
+            <div class="card info-card" data-reveal="right">
+              <span class="info-card__ico">☎</span>
+              <h3>任务热线 · 7×24</h3>
+              <p>全球统一：<a href="tel:400-000-0000">400-000-0000</a><br/>邮箱：<a href="mailto:hello@astrum.space">hello@astrum.space</a></p>
+            </div>
+            <div class="card info-card" data-reveal="right" style="--d:.08s">
+              <span class="info-card__ico">◈</span>
+              <h3>发射基地</h3>
+              <p>总部 · KSC 07 号发射工位<br/>训练营 · 沙漠训练基地 2 号营<br/>来访请提前预约，凭通行证入场。</p>
+            </div>
+            <div class="card info-card" data-reveal="right" style="--d:.16s">
+              <span class="info-card__ico">✦</span>
+              <h3>更快找到我们</h3>
+              <p>「我是旅客」请直接查看<a href="pricing.html">票价与排期</a><br/>「我有载荷」请看<a href="services.html">服务细节</a><br/>「想加入」请发简历到 talent@astrum.space</p>
+            </div>
+            <div class="card" style="padding:var(--sp-5);--d:.24s" data-reveal="right">
+              <div class="mono-tag">SOCIAL · 关注发射</div>
+              <div class="foot-socials" style="margin-top:1rem" aria-label="社交媒体">
+                <a class="foot-social" href="#" aria-label="微博">微</a>
+                <a class="foot-social" href="#" aria-label="微信公众号">信</a>
+                <a class="foot-social" href="#" aria-label="哔哩哔哩">B</a>
+                <a class="foot-social" href="#" aria-label="X 平台">X</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="padding-top:var(--sp-8)">
+      <div class="foot-grid">
+        <div class="foot-brand-col">
+          <a class="brand" href="index.html" aria-label="远穹宇航首页">
+            <span class="brand__mark"><svg viewBox="0 0 64 64" width="30" height="30" fill="none" style="color:#ff5a2e"><circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.7"/><ellipse cx="32" cy="32" rx="30" ry="8" stroke="#54e6e0" stroke-width="1" opacity="0.55" transform="rotate(-22 32 32)"/><path d="M32 11 L34.9 29.1 L53 32 L34.9 34.9 L32 53 L29.1 34.9 L11 32 L29.1 29.1 Z" fill="currentColor"/><circle cx="51" cy="17" r="3.6" fill="#54e6e0"/></svg></span>
+            <span class="brand__name"><span class="brand__name-en">ASTRUM</span><span class="brand__name-cn">远 穹 宇 航</span></span>
+          </a>
+          <p>一家把"太空属于每一个人"当作信条的公司。设计、工程与梦想，在这里同时点火。</p>
+          <div class="foot-socials" aria-label="社交媒体">
+            <a class="foot-social" href="#" aria-label="微博">微</a>
+            <a class="foot-social" href="#" aria-label="微信公众号">信</a>
+            <a class="foot-social" href="#" aria-label="哔哩哔哩">B</a>
+            <a class="foot-social" href="#" aria-label="X 平台">X</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>探索</h4>
+          <div class="foot-links">
+            <a href="about.html">关于远穹</a>
+            <a href="work.html">任务档案</a>
+            <a href="services.html">服务与设施</a>
+            <a href="blog.html">洞察与报告</a>
+            <a href="work.html#ast09">极光号任务</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>计划</h4>
+          <div class="foot-links">
+            <a href="pricing.html">个人席位</a>
+            <a href="pricing.html#annual">企业包机</a>
+            <a href="services.html#edu">远穹学院</a>
+            <a href="pricing.html#compare">票种对比</a>
+            <a href="contact.html">加入我们</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>保持联络</h4>
+          <p style="color:var(--ink-3);font-size:var(--fs-sm);margin-bottom:1rem">订阅《星信》，每月一封来自轨道上的信。</p>
+          <div class="newsletter" data-newsletter>
+            <form data-validate data-form="newsletter" novalidate>
+              <div class="field" style="display:contents">
+                <label class="visually-hidden" for="nl-email">电子邮箱</label>
+                <input id="nl-email" type="email" name="email" placeholder="你的邮箱地址" required />
+              </div>
+              <button class="btn btn--primary btn--sm" type="submit">订阅</button>
+            </form>
+            <p class="ok-msg">✓ 欢迎加入星信，下一封信将从轨道寄出。</p>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <div>© <span class="js-year">2026</span> 远穹宇航 ASTRUM SPACE CO. · 保留所有权利</div>
+        <nav aria-label="法律信息">
+          <a href="#">隐私政策</a>
+          <a href="#">服务条款</a>
+          <a href="#">无障碍声明</a>
+        </nav>
+        <div class="mono-tag">引擎 v2026.9 · CSS / VANILLA JS</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="返回顶部">↑</button>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="任务影像预览">
+    <div class="lb-stage">
+      <div class="lb-media"></div>
+      <div class="lb-cap"><strong>任务预览</strong><span class="mono-tag">ASTRUM ARCHIVE</span></div>
+      <span class="lb-count"></span>
+      <button class="lb-close" aria-label="关闭">✕</button>
+      <button class="lb-nav lb-nav--prev" aria-label="上一个">←</button>
+      <button class="lb-nav lb-nav--next" aria-label="下一个">→</button>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

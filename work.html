@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>任务档案 · 远穹宇航 ASTRUM</title>
+  <meta name="description" content="远穹任务档案：历次载人观光、空间站驻留、载荷发射与学生实验的完整记录与影像。" />
+  <meta name="theme-color" content="#05070d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070d'/%3E%3Cpath d='M32 12 L34.6 29.4 L52 32 L34.6 34.6 L32 52 L29.4 34.6 L12 32 L29.4 29.4 Z' fill='%23ff5a2e'/%3E%3Ccircle cx='50' cy='18' r='4' fill='%2354e6e0'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/effects.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
+  <div class="cursor-ring" aria-hidden="true" style="opacity:0"><span class="cursor-label"></span></div>
+
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__mark">
+        <svg viewBox="0 0 64 64" width="72" height="72" fill="none" style="color:#ff5a2e">
+          <circle cx="32" cy="32" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.6"/>
+          <ellipse cx="32" cy="32" rx="31" ry="9" stroke="#54e6e0" stroke-width="1" opacity="0.5" transform="rotate(-22 32 32)"/>
+          <path d="M32 10 L35 29.5 L54 32 L35 34.5 L32 54 L29 34.5 L10 32 L29 29.5 Z" fill="currentColor"/>
+          <circle cx="52" cy="18" r="3.6" fill="#54e6e0"/>
+        </svg>
+      </div>
+      <div class="preloader__name">ASTRUM</div>
+      <div class="preloader__bar"><span></span></div>
+      <div class="preloader__pct">000%</div>
+      <div class="preloader__status">校准推进器</div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container-wide nav-inner">
+      <a class="brand" href="index.html" aria-label="远穹宇航 首页">
+        <span class="brand__mark"><svg viewBox="0 0 64 64" width="30" height="30" fill="none" style="color:#ff5a2e"><circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.7"/><ellipse cx="32" cy="32" rx="30" ry="8" stroke="#54e6e0" stroke-width="1" opacity="0.55" transform="rotate(-22 32 32)"/><path d="M32 11 L34.9 29.1 L53 32 L34.9 34.9 L32 53 L29.1 34.9 L11 32 L29.1 29.1 Z" fill="currentColor"/><circle cx="51" cy="17" r="3.6" fill="#54e6e0"/></svg></span>
+        <span class="brand__name"><span class="brand__name-en">ASTRUM</span><span class="brand__name-cn">远 穹 宇 航</span></span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a class="nav-link" href="index.html">首页</a>
+        <a class="nav-link" href="about.html">关于</a>
+        <a class="nav-link" href="services.html">服务</a>
+        <a class="nav-link active" href="work.html">任务</a>
+        <a class="nav-link" href="blog.html">洞察</a>
+        <a class="nav-link" href="pricing.html">票价</a>
+        <a class="nav-link" href="contact.html">联系</a>
+      </nav>
+      <div class="nav-right">
+        <a class="btn btn--primary btn--sm nav-cta-desktop" data-magnetic href="contact.html">立即启程 <span class="arrow">→</span></a>
+        <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false"><span class="bars"><span></span><span></span></span></button>
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="移动端导航">
+    <div class="mobile-menu__links">
+      <a class="mobile-menu__link" style="--d:.02s" href="index.html"><span class="idx">01</span>首页</a>
+      <a class="mobile-menu__link" style="--d:.06s" href="about.html"><span class="idx">02</span>关于</a>
+      <a class="mobile-menu__link" style="--d:.1s" href="services.html"><span class="idx">03</span>服务</a>
+      <a class="mobile-menu__link active" style="--d:.14s" href="work.html"><span class="idx">04</span>任务</a>
+      <a class="mobile-menu__link" style="--d:.18s" href="blog.html"><span class="idx">05</span>洞察</a>
+      <a class="mobile-menu__link" style="--d:.22s" href="pricing.html"><span class="idx">06</span>票价</a>
+      <a class="mobile-menu__link" style="--d:.26s" href="contact.html"><span class="idx">07</span>联系</a>
+    </div>
+    <div class="mobile-menu__foot"><span>© <span class="js-year">2026</span> 远穹宇航 · 面向全人类开放</span><span>hello@astrum.space</span></div>
+  </nav>
+
+  <main id="main">
+    <!-- 页头 -->
+    <section class="page-hero">
+      <div class="page-hero__bg aurora" aria-hidden="true">
+        <div class="aurora__blob aurora__blob--1" style="opacity:.36"></div>
+        <div class="aurora__blob aurora__blob--2" style="opacity:.3"></div>
+        <div class="aurora__blob aurora__blob--3" style="opacity:.3"></div>
+      </div>
+      <div class="container page-hero__inner hero-stagger">
+        <nav class="crumbs" aria-label="面包屑">
+          <a href="index.html">首页</a><span class="slash">/</span><span class="cur">任务档案</span>
+        </nav>
+        <div class="overline overline--dot">任务档案 · MISSION ARCHIVE</div>
+        <h1 class="page-hero__title cn">
+          <span class="mask-line" style="--d:.05s"><span>每一次点火，</span></span>
+          <span class="mask-line" style="--d:.16s"><span>都写在档案里。</span></span>
+        </h1>
+        <p class="lead" style="max-width:56ch">点击任意任务影像可放大浏览。六年来 48 次发射，我们用开源报告记录每一次——包括失败的两次：它们教会我们的，比成功更多。</p>
+        <p class="mono-tag">FILTER: 点击下方分类查看 · 影像可点击放大</p>
+      </div>
+    </section>
+
+    <!-- 特大案例 -->
+    <section class="section section--flush-top" id="ast09">
+      <div class="container">
+        <div class="case-study" data-reveal="up">
+          <div class="case-study__media fade-media" data-lb-item data-poster="poster--solar" data-glyph="☀" data-label="AST-09 · 极光号 追光之旅">
+            <div class="poster poster--solar">
+              <div class="poster__noise"></div>
+              <div class="poster__glyph">☀</div>
+              <span class="poster__code">FEATURED / AST-09 · 2026.05</span>
+              <div class="poster-veil"></div>
+            </div>
+            <span class="chip mission-card__tag" style="top:var(--sp-5);left:var(--sp-5)"><span class="dot"></span>2026 年度旗舰任务</span>
+          </div>
+          <div class="case-study__body">
+            <div class="overline overline--ice">案例研究 · CASE STUDY</div>
+            <h2>极光号：一场把极光变成"窗外风景"的旅行</h2>
+            <p class="lead" style="font-size:var(--fs-body)">远穹首次全部由非专业旅客组成的乘组。6 位乘员年龄 28–71 岁，在 4 天内完成 64 次日出观测，并协助完成 9 项微重力实验。返航后乘员满意度 100%。</p>
+            <div class="case-study__stats">
+              <div class="row"><b>64</b><span>次日出</span></div>
+              <div class="row"><b>100%</b><span>满意度</span></div>
+              <div class="row"><b>9</b><span>项实验</span></div>
+              <div class="row"><b>T+0.3s</b><span>入轨精度</span></div>
+            </div>
+            <div>
+              <a class="link-arrow" href="blog.html"><span class="txt">阅读任务完整报告</span><span class="ico">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 全部任务 -->
+    <section class="section section--tint" id="archive">
+      <div class="container">
+        <span class="sec-num">02 / 全部任务</span>
+        <div class="section-head section-head--row">
+          <div class="section-head__inner">
+            <div class="overline overline--ice" data-reveal="up">档案 · ARCHIVE</div>
+            <h2 class="cn section-title" data-reveal="up">按类别翻阅档案</h2>
+          </div>
+          <div class="badge-inline" data-reveal="up"><span class="mono-tag">共 <b class="filter-count" style="color:var(--ember-2)">08</b> 项收录</span></div>
+        </div>
+
+        <div class="filter-bar" data-filter-bar data-filter-all="all" aria-label="任务分类" data-reveal="up">
+          <button class="filter-btn active" data-filter="all">全部</button>
+          <button class="filter-btn" data-filter="crew">载人观光</button>
+          <button class="filter-btn" data-filter="station">空间站驻留</button>
+          <button class="filter-btn" data-filter="cargo">载荷 / 卫星</button>
+          <button class="filter-btn" data-filter="edu">学院 / 科研</button>
+        </div>
+
+        <div class="grid grid-cols-3" data-filter-grid style="position:relative">
+
+          <!-- crew -->
+          <article class="project-item" data-category="crew" data-reveal="up">
+            <div class="card project-card tilt-wrap">
+              <div class="tilt-card">
+                <div class="project-card__media fade-media" data-lb-item data-poster="poster--magma" data-glyph="◈" data-label="AST-10 · 飞跃晨昏线">
+                  <div class="poster poster--magma"><div class="poster__noise"></div><div class="poster__glyph">◈</div><span class="poster__code">AST-10 · SUNRISE TRACK</span><div class="poster-veil"></div></div>
+                </div>
+                <div class="project-card__body">
+                  <div class="project-card__tags"><span class="chip"><span class="dot"></span>载人观光</span><span class="chip chip--ember">已完成</span></div>
+                  <h3 class="project-card__title">AST-10 · 飞跃晨昏线</h3>
+                  <p style="color:var(--ink-3);font-size:var(--fs-sm)">沿晨昏线飞行的"追日航线"，24 小时内看完地球的一整天。</p>
+                  <span class="mono-tag">2026.03 · 3 天 · 5 人</span>
+                </div>
+                <div class="tilt-glare"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item" data-category="crew" data-reveal="up" style="--d:.06s">
+            <div class="card project-card tilt-wrap">
+              <div class="tilt-card">
+                <div class="project-card__media fade-media" data-lb-item data-poster="poster--aurora" data-glyph="♒" data-label="AST-13 · 极光带上空">
+                  <div class="poster poster--aurora"><div class="poster__noise"></div><div class="poster__glyph">♒</div><span class="poster__code">AST-13 · AURORA OVERFLIGHT</span><div class="poster-veil"></div></div>
+                </div>
+                <div class="project-card__body">
+                  <div class="project-card__tags"><span class="chip"><span class="dot"></span>载人观光</span><span class="chip">候补中</span></div>
+                  <h3 class="project-card__title">AST-13 · 极光带上空</h3>
+                  <p style="color:var(--ink-3);font-size:var(--fs-sm)">高倾角轨道掠过南北极光带，摄影爱好者的天堂航线。</p>
+                  <span class="mono-tag">2026.11 起 · 4 天</span>
+                </div>
+                <div class="tilt-glare"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item" data-category="crew" data-reveal="up" style="--d:.12s">
+            <div class="card project-card tilt-wrap">
+              <div class="tilt-card">
+                <div class="project-card__media fade-media" data-lb-item data-poster="poster--mist" data-glyph="☁" data-label="AST-08 · 云海之上">
+                  <div class="poster poster--mist"><div class="poster__noise"></div><div class="poster__glyph">☁</div><span class="poster__code">AST-08 · ABOVE THE CLOUDS</span><div class="poster-veil"></div></div>
+                </div>
+                <div class="project-card__body">
+                  <div class="project-card__tags"><span class="chip"><span class="dot"></span>载人观光</span><span class="chip chip--ember">已完成</span></div>
+                  <h3 class="project-card__title">AST-08 · 云海之上</h3>
+                  <p style="color:var(--ink-3);font-size:var(--fs-sm)">在台风眼正上方看云系旋转——气象学最浪漫的一课。</p>
+                  <span class="mono-tag">2026.01 · 3 天 · 6 人</span>
+                </div>
+                <div class="tilt-glare"></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- station -->
+          <article class="project-item" data-category="station" id="ast12" data-reveal="up">
+            <div class="card project-card tilt-wrap">
+              <div class="tilt-card">
+                <div class="project-card__media fade-media" data-lb-item data-poster="poster--ice" data-glyph="◍" data-label="AST-12 · 曙光号首夜">
+                  <div class="poster poster--ice"><div class="poster__noise"></div><div class="poster__glyph">◍</div><span class="poster__code">AST-12 · DAWN STATION</span><div class="poster-veil"></div></div>
+                </div>
+                <div class="project-card__body">
+                  <div class="project-card__tags"><span class="chip"><span class="dot"></span>空间站驻留</span><span class="chip">进行中</span></div>
+                  <h3 class="project-card__title">AST-12 · 曙光号首夜</h3>
+                  <p style="color:var(--ink-3);font-size:var(--fs-sm)">商业空间站首批驻留，与科研乘组共同完成 11 项实验。</p>
+                  <span class="mono-tag">2026.08 · 8 天 · 4 人</span>
+                </div>
+                <div class="tilt-glare"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item" data-category="station" data-reveal="up" style="--d:.06s">
+            <div class="card project-card tilt-wrap">
+              <div class="tilt-card">
+                <div class="project-card__media fade-media" data-lb-item data-poster="poster--nebula" data-glyph="✦" data-label="AST-16 · 艺术家驻留计划">
+                  <div class="poster poster--nebula"><div class="poster__noise"></div><div class="poster__glyph">✦</div><span class="poster__code">AST-16 · ARTIST RESIDENCY</span><div class="poster-veil"></div></div>
+                </div>
+                <div class="project-card__body">
+                  <div class="project-card__tags"><span class="chip"><span class="dot"></span>空间站驻留</span><span class="chip">候补中</span></div>
+                  <h3 class="project-card__title">AST-16 · 艺术家驻留计划</h3>
+                  <p style="color:var(--ink-3);font-size:var(--fs-sm)">让画家与音乐家驻站 30 天，创作只可能在轨道上完成的作品。</p>
+                  <span class="mono-tag">2027.02 · 30 天 · 2 人</span>
+                </div>
+                <div class="tilt-glare"></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- cargo -->
+          <article class="project-item" data-category="cargo" data-reveal="up">
+            <div class="card project-card tilt-wrap">
+              <div class="tilt-card">
+                <div class="project-card__media fade-media" data-lb-item data-poster="poster--grid" data-glyph="◈" data-label="AST-11 · 学生立方星部署">
+                  <div class="poster poster--grid"><div class="poster__noise"></div><div class="poster__glyph">◈</div><span class="poster__code">AST-11 · CUBESAT DEPLOY</span><div class="poster-veil"></div></div>
+                </div>
+                <div class="project-card__body">
+                  <div class="project-card__tags"><span class="chip"><span class="dot"></span>载荷 / 卫星</span><span class="chip chip--ember">已完成</span></div>
+                  <h3 class="project-card__title">AST-11 · 学生立方星部署</h3>
+                  <p style="color:var(--ink-3);font-size:var(--fs-sm)">三所中学联合研制的 3U 立方星入轨，现已工作 300+ 天。</p>
+                  <span class="mono-tag">2026.06 · 550 km SSO</span>
+                </div>
+                <div class="tilt-glare"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item" data-category="cargo" data-reveal="up" style="--d:.06s">
+            <div class="card project-card tilt-wrap">
+              <div class="tilt-card">
+                <div class="project-card__media fade-media" data-lb-item data-poster="poster--circuit" data-glyph="⌬" data-label="CSAT-02 · 天穹星座组网">
+                  <div class="poster poster--circuit"><div class="poster__noise"></div><div class="poster__glyph">⌬</div><span class="poster__code">CSAT-02 · CONSTELLATION</span><div class="poster-veil"></div></div>
+                </div>
+                <div class="project-card__body">
+                  <div class="project-card__tags"><span class="chip"><span class="dot"></span>载荷 / 卫星</span><span class="chip">在轨运维</span></div>
+                  <h3 class="project-card__title">CSAT-02 · 天穹星座组网</h3>
+                  <p style="color:var(--ink-3);font-size:var(--fs-sm)">为天基通信部署第二批 12 颗卫星，含一次成功离轨处置。</p>
+                  <span class="mono-tag">2026.07 · 一箭 12 星</span>
+                </div>
+                <div class="tilt-glare"></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- edu -->
+          <article class="project-item" data-category="edu" data-reveal="up">
+            <div class="card project-card tilt-wrap">
+              <div class="tilt-card">
+                <div class="project-card__media fade-media" data-lb-item data-poster="poster--mist" data-glyph="✎" data-label="EDU-21 · 学生实验升空">
+                  <div class="poster poster--mist"><div class="poster__noise"></div><div class="poster__glyph">✎</div><span class="poster__code">EDU-21 · STUDENT EXPERIMENT</span><div class="poster-veil"></div></div>
+                </div>
+                <div class="project-card__body">
+                  <div class="project-card__tags"><span class="chip"><span class="dot"></span>学院 / 科研</span><span class="chip chip--ember">已完成</span></div>
+                  <h3 class="project-card__title">EDU-21 · 学生实验升空</h3>
+                  <p style="color:var(--ink-3);font-size:var(--fs-sm)">高中生设计的"微重力下水结晶"实验随补给船上站。</p>
+                  <span class="mono-tag">2026.04 · 免费搭载</span>
+                </div>
+                <div class="tilt-glare"></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 说明带 -->
+    <section class="section section--tight" id="disclosure">
+      <div class="container">
+        <div class="duo" style="align-items:start;gap:var(--sp-6)">
+          <div>
+            <div class="overline" data-reveal="up">我们的失败 · FAILURES</div>
+            <h3 class="cn" style="font-family:var(--font-serif);font-weight:900;font-size:var(--fs-h3);margin-top:1rem" data-reveal="up">透明，是最好的安全记录</h3>
+          </div>
+          <div class="lead" style="font-size:var(--fs-body)" data-reveal="up">2022 年的两次货运发射失败后，我们公开了全部遥测数据与故障报告，并重新设计了阀门密封方案。此后 44 次发射全部成功——因为我们从不把失败藏进抽屉，而是把它焊进下一次飞行。</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="foot-cta">
+      <div class="container">
+        <div class="overline overline--center" data-reveal="up">SEE IT FOR YOURSELF</div>
+        <h2 class="foot-cta__title cn" data-reveal="up" style="--d:.06s">档案看完了，<br /><span class="grad-text-fire">下一段影像里，想有你。</span></h2>
+        <div class="foot-cta__actions" data-reveal="up" style="--d:.12s">
+          <a class="btn btn--primary btn--lg" data-magnetic href="pricing.html">查看 2027 席位 <span class="arrow">→</span></a>
+          <a class="btn btn--ghost btn--lg" data-magnetic href="contact.html">预约咨询</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand-col">
+          <a class="brand" href="index.html" aria-label="远穹宇航首页">
+            <span class="brand__mark"><svg viewBox="0 0 64 64" width="30" height="30" fill="none" style="color:#ff5a2e"><circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity="0.7"/><ellipse cx="32" cy="32" rx="30" ry="8" stroke="#54e6e0" stroke-width="1" opacity="0.55" transform="rotate(-22 32 32)"/><path d="M32 11 L34.9 29.1 L53 32 L34.9 34.9 L32 53 L29.1 34.9 L11 32 L29.1 29.1 Z" fill="currentColor"/><circle cx="51" cy="17" r="3.6" fill="#54e6e0"/></svg></span>
+            <span class="brand__name"><span class="brand__name-en">ASTRUM</span><span class="brand__name-cn">远 穹 宇 航</span></span>
+          </a>
+          <p>一家把"太空属于每一个人"当作信条的公司。设计、工程与梦想，在这里同时点火。</p>
+          <div class="foot-socials" aria-label="社交媒体">
+            <a class="foot-social" href="#" aria-label="微博">微</a>
+            <a class="foot-social" href="#" aria-label="微信公众号">信</a>
+            <a class="foot-social" href="#" aria-label="哔哩哔哩">B</a>
+            <a class="foot-social" href="#" aria-label="X 平台">X</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>探索</h4>
+          <div class="foot-links">
+            <a href="about.html">关于远穹</a>
+            <a href="work.html">任务档案</a>
+            <a href="services.html">服务与设施</a>
+            <a href="blog.html">洞察与报告</a>
+            <a href="work.html#ast09">极光号任务</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>计划</h4>
+          <div class="foot-links">
+            <a href="pricing.html">个人席位</a>
+            <a href="pricing.html#annual">企业包机</a>
+            <a href="services.html#edu">远穹学院</a>
+            <a href="pricing.html#compare">票种对比</a>
+            <a href="contact.html">加入我们</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>保持联络</h4>
+          <p style="color:var(--ink-3);font-size:var(--fs-sm);margin-bottom:1rem">订阅《星信》，每月一封来自轨道上的信。</p>
+          <div class="newsletter" data-newsletter>
+            <form data-validate data-form="newsletter" novalidate>
+              <div class="field" style="display:contents">
+                <label class="visually-hidden" for="nl-email">电子邮箱</label>
+                <input id="nl-email" type="email" name="email" placeholder="你的邮箱地址" required />
+              </div>
+              <button class="btn btn--primary btn--sm" type="submit">订阅</button>
+            </form>
+            <p class="ok-msg">✓ 欢迎加入星信，下一封信将从轨道寄出。</p>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <div>© <span class="js-year">2026</span> 远穹宇航 ASTRUM SPACE CO. · 保留所有权利</div>
+        <nav aria-label="法律信息">
+          <a href="#">隐私政策</a>
+          <a href="#">服务条款</a>
+          <a href="#">无障碍声明</a>
+        </nav>
+        <div class="mono-tag">引擎 v2026.9 · CSS / VANILLA JS</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="返回顶部">↑</button>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="任务影像预览">
+    <div class="lb-stage">
+      <div class="lb-media"></div>
+      <div class="lb-cap"><strong>任务预览</strong><span class="mono-tag">ASTRUM ARCHIVE</span></div>
+      <span class="lb-count"></span>
+      <button class="lb-close" aria-label="关闭">✕</button>
+      <button class="lb-nav lb-nav--prev" aria-label="上一个">←</button>
+      <button class="lb-nav lb-nav--next" aria-label="下一个">→</button>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
