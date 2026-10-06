@@ -56,6 +56,15 @@
   function initPreloader() {
     var pre = $("#preloader");
     if (!pre) return;
+    /* 站内跳转时不放预加载器：转场动画已经承担了"入场"的角色，
+       重复播一次会让导航显得很慢。 */
+    if (d.documentElement.classList.contains("is-arriving")) {
+      pre.classList.add("is-done");
+      d.body.classList.add("is-ready");
+      revealHero();
+      dispatchLoaded();
+      return;
+    }
     var bar = $(".preloader__bar span", pre);
     var pct = $(".preloader__pct", pre);
     var status = $(".preloader__status", pre);
@@ -88,9 +97,7 @@
       pre.classList.add("is-done");
       d.body.classList.add("is-ready");
       revealHero();
-      if (w.removeEventListener) {
-        // 让预加载层结束后可滚动
-      }
+      dispatchLoaded();
     }
 
     w.requestAnimationFrame(frame);
@@ -962,11 +969,40 @@
   }
 
   /* ============================================================
+     0. 电影级模块编排
+     所有子模块都是"可选增强"：任何一个加载失败或被浏览器不支持，
+     都不影响其余功能，也不会阻塞后面的既有初始化。
+     ============================================================ */
+  function dispatchLoaded() {
+    try {
+      w.dispatchEvent(new Event("astrum:loaded"));
+    } catch (e) {
+      var ev = d.createEvent("Event");
+      ev.initEvent("astrum:loaded", false, false);
+      w.dispatchEvent(ev);
+    }
+  }
+
+  function initCinematic() {
+    var A = w.ASTRUM || {};
+    var modules = [A.Transitions, A.Motion, A.Cine, A.Audio];
+    modules.forEach(function (m) {
+      if (!m || typeof m.init !== "function") return;
+      try {
+        m.init();
+      } catch (e) {
+        if (w.console && console.warn) console.warn("[ASTRUM] cinematic module failed:", e);
+      }
+    });
+  }
+
+  /* ============================================================
      Boot
      ============================================================ */
   function boot() {
     initNavActive();
     initFooterYear();
+    initCinematic();
     initPreloader();
     initCursor();
     initHeader();
@@ -995,6 +1031,11 @@
     boot();
   }
 
-  /* 重新触发（若页面内含动态加载内容时可手动调用） */
-  w.ASTRUM = { reinit: boot, toast: toast };
+  /* 重新触发（若页面内含动态加载内容时可手动调用）
+     注意：必须是"合并"而不是整体替换——电影级模块
+     （GL / Motion / Cine / Audio / Transitions / pages）
+     都挂在同一命名空间下。 */
+  w.ASTRUM = w.ASTRUM || {};
+  w.ASTRUM.reinit = boot;
+  w.ASTRUM.toast = toast;
 })(window, document);

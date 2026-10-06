@@ -465,3 +465,69 @@ main { position: relative; z-index: var(--z-content); }
   opacity: 0.5;
   pointer-events: none;
 }
+
+/* ============================================================
+   电影级扩展令牌 (Cinematic v2)
+   —— 供 cinematic.css / motion.css / WebGL 着色器共用
+   ============================================================ */
+:root {
+  /* 空间深度（视差系数，供 JS 读取：data-depth="2" → --depth-2） */
+  --depth-0: 0;
+  --depth-1: 0.05;
+  --depth-2: 0.12;
+  --depth-3: 0.24;
+  --depth-4: 0.42;
+  --depth-5: 0.68;
+
+  /* 体积光 / 辉光 */
+  --glow-warm: rgba(255, 150, 92, 0.55);
+  --glow-cool: rgba(110, 230, 228, 0.5);
+  --glow-violet: rgba(140, 116, 255, 0.45);
+  --bloom-soft: 0 0 34px -4px rgba(255, 255, 255, 0.14);
+  --bloom-ember: 0 0 74px -8px rgba(var(--ember-rgb), 0.62);
+  --bloom-ice: 0 0 74px -8px rgba(var(--ice-rgb), 0.55);
+
+  /* 模糊档位（景深层） */
+  --blur-xs: 3px;
+  --blur-sm: 8px;
+  --blur-md: 20px;
+  --blur-lg: 46px;
+  --blur-xl: 110px;
+
+  /* 色散（镜头） */
+  --disp-warm: rgba(var(--ember-rgb), 0.8);
+  --disp-cool: rgba(var(--ice-rgb), 0.75);
+  --disp-ink: rgba(10, 14, 26, 0.65);
+
+  /* 遮幅（letterbox）与安全区 */
+  --cine-bar: clamp(0px, 3.2vh, 72px);
+  --cine-safe-top: calc(var(--nav-h) + 0.5rem);
+
+  /* 大气雾 */
+  --fog-1: rgba(8, 12, 24, 0.42);
+  --fog-2: rgba(5, 7, 13, 0.72);
+  --fog-ember: rgba(255, 90, 46, 0.16);
+  --fog-ice: rgba(84, 230, 224, 0.14);
+
+  /* 编排节奏（比基础 --dur-* 更密，用于逐项 stagger） */
+  --beat-1: 70ms;
+  --beat-2: 110ms;
+  --beat-3: 160ms;
+  --beat-4: 240ms;
+
+  /* 缓动扩展 */
+  --ease-cine: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-cine-in: cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  --ease-swift: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-glide: cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* 动画上下文的进度（由 JS 写入 0→1，CSS 可直接消费） */
+  --scene-p: 0;
+  --depth-x: 0;
+  --depth-y: 0;
+
+  /* 层级补充 */
+  --z-cine: 58;
+  --z-audio: 70;
+  --z-beam: 2;
+}

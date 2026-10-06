@@ -1,0 +1,248 @@
+/* ============================================================
+   ASTRUM 远穹 — 滚动编排与页面转场
+   File : assets/css/motion.css
+   依赖 : tokens.css
+   说明 : ① 原生滚动驱动动画（scroll-timeline）为渐进增强；
+          ② JS 时间轴引擎（motion.js）为不支持的浏览器提供等效编排；
+          ③ 跨文档 View Transitions 关键帧在此定义。
+   ============================================================ */
+
+/* ================= 1. 统一进场编排 ================= */
+/* 容器：data-scene —— 子项按 --i 依次入场，形成分镜节奏 */
+[data-scene] > *:not([data-scene-skip]) {
+  opacity: 0;
+  transform: translate3d(0, var(--scene-y, 34px), 0) scale(var(--scene-s, 1));
+  filter: blur(var(--scene-b, 8px));
+  transition:
+    opacity 0.95s var(--ease-glide),
+    transform 1.05s var(--ease-glide),
+    filter 0.95s var(--ease-glide);
+  transition-delay: calc(var(--i, 0) * var(--beat-2) + var(--scene-d, 0s));
+  will-change: opacity, transform, filter;
+}
+[data-scene].is-in > *:not([data-scene-skip]) {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+/* 分镜方向变体 */
+[data-scene="rise"] > * { --scene-y: 46px; }
+[data-scene="fall"] > * { --scene-y: -40px; }
+[data-scene="zoom"] > * { --scene-y: 12px; --scene-s: 0.94; }
+[data-scene="blur"] > * { --scene-y: 0px; --scene-b: 16px; }
+[data-scene="soft"] > * { --scene-b: 3px; }
+
+/* 分镜间隔变体（节奏控制） */
+[data-scene-beat="fast"] > * { transition-delay: calc(var(--i, 0) * var(--beat-1)); }
+[data-scene-beat="slow"] > * { transition-delay: calc(var(--i, 0) * var(--beat-4)); }
+
+/* ================= 2. 文字分层揭幕 ================= */
+/* 由 motion.js 在 .split 元素上生成 .split__line > .split__word 结构 */
+.split { --split-y: 108%; }
+.split__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+.split__word {
+  display: inline-block;
+  transform: translate3d(0, var(--split-y), 0) rotate(calc(var(--wrot, 0deg)));
+  opacity: 0;
+  transition:
+    transform 1.05s var(--ease-glide),
+    opacity 0.8s var(--ease-cine);
+  transition-delay: calc(var(--wi, 0) * 42ms);
+  will-change: transform, opacity;
+}
+.split.is-in .split__word {
+  transform: none;
+  opacity: 1;
+}
+.split--soft { --split-y: 26px; }
+.split--soft .split__word { transform: translate3d(0, var(--split-y), 0); }
+
+/* 逐字（短标题用，更戏剧） */
+.split--char .split__word { display: inline-block; }
+.split--char .split__chr {
+  display: inline-block;
+  transform: translate3d(0, 0.9em, 0);
+  opacity: 0;
+  transition: transform 0.9s var(--ease-glide), opacity 0.7s var(--ease-cine);
+  transition-delay: calc(var(--ci, 0) * 28ms);
+}
+.split--char.is-in .split__chr { transform: none; opacity: 1; }
+
+/* ================= 3. 原生滚动驱动（渐进增强） ================= */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* 区块进度线：随区块进入视口生长 */
+    .scroll-rail {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line-1);
+      overflow: hidden;
+    }
+    .scroll-rail__fill {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, var(--ember), var(--ice));
+      transform-origin: 50% 0;
+      transform: scaleY(0);
+      animation: rail-grow linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    @keyframes rail-grow {
+      from { transform: scaleY(0); }
+      to   { transform: scaleY(1); }
+    }
+
+    /* 深度层：滚动时自然错位（CSS 版本，和 JS 版本互为兜底） */
+    [data-depth-css] {
+      animation: depth-drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    @keyframes depth-drift {
+      from { transform: translate3d(0, calc(var(--depth, 0.12) * 42px), 0); }
+      to   { transform: translate3d(0, calc(var(--depth, 0.12) * -42px), 0); }
+    }
+
+    /* 章节标题：进入视口时轻微"对焦" */
+    .focus-in {
+      animation: focus-in linear both;
+      animation-timeline: view();
+      animation-range: entry 12% cover 34%;
+    }
+    @keyframes focus-in {
+      from { opacity: 0.15; filter: blur(9px); letter-spacing: 0.06em; }
+      to   { opacity: 1; filter: blur(0); letter-spacing: inherit; }
+    }
+  }
+}
+
+/* JS 兜底版本（当 scroll-timeline 不支持时，由 motion.js 写 --p 驱动） */
+.js-timeline .focus-in[data-p] {
+  opacity: calc(0.15 + var(--p) * 0.85);
+  filter: blur(calc((1 - var(--p)) * 9px));
+}
+
+/* ================= 4. 视差与惯性 ================= */
+/* JS 平滑滚动时（仅桌面、非降级）给根元素一个标记 */
+html.is-smoothwheeling { scroll-behavior: auto; }
+
+.parallax-media {
+  will-change: transform;
+  transform: translate3d(0, var(--py, 0px), 0) scale(var(--ps, 1.06));
+}
+
+/* 磁吸 / 倾斜的平滑回归 */
+[data-magnetic], .tilt-card { backface-visibility: hidden; }
+
+/* ================= 5. 跨文档 View Transitions ================= */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.52s;
+    animation-timing-function: var(--ease-glide);
+  }
+  /* 旧页面：向下沉并淡出，像是"退后" */
+  ::view-transition-old(root) {
+    animation-name: vt-leave;
+  }
+  /* 新页面：从深空聚焦浮现 */
+  ::view-transition-new(root) {
+    animation-name: vt-enter;
+  }
+  @keyframes vt-leave {
+    from { opacity: 1; transform: scale(1); filter: blur(0); }
+    to   { opacity: 0; transform: scale(0.982); filter: blur(7px); }
+  }
+  @keyframes vt-enter {
+    from { opacity: 0; transform: scale(1.018); filter: blur(9px); }
+    to   { opacity: 1; transform: scale(1); filter: blur(0); }
+  }
+
+  /* 品牌标识：跨页连续 */
+  ::view-transition-old(brand-mark),
+  ::view-transition-new(brand-mark) {
+    animation-duration: 0.62s;
+    animation-timing-function: var(--ease-glide);
+    mix-blend-mode: normal;
+  }
+  /* 页面主标题 */
+  ::view-transition-old(page-title) { animation: vt-title-out 0.42s var(--ease-cine-in) both; }
+  ::view-transition-new(page-title) { animation: vt-title-in 0.66s var(--ease-glide) both; }
+  @keyframes vt-title-out {
+    to { opacity: 0; transform: translateY(-14px); filter: blur(6px); }
+  }
+  @keyframes vt-title-in {
+    from { opacity: 0; transform: translateY(18px); filter: blur(8px); }
+    to   { opacity: 1; transform: none; filter: blur(0); }
+  }
+
+  /* 导航条：保持不动，避免整页跳动 */
+  ::view-transition-group(site-header) { animation-duration: 0.5s; }
+}
+
+/* 跨页共享元素：品牌标识与页面主标题。
+   注意：view-transition-name 在每个文档内必须唯一，
+   因此品牌只取顶栏那一份（页脚同名元素不复用）。 */
+.site-header .brand__mark { view-transition-name: brand-mark; }
+.page-hero__title,
+.hero__title { view-transition-name: page-title; }
+
+/* 转场瞬间的一层光膜（transitions.js 挂 .is-transitioning） */
+html.is-transitioning body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-cine) + 1);
+  pointer-events: none;
+  background: radial-gradient(60% 50% at 50% 50%, rgba(255, 255, 255, 0.05), transparent 70%);
+  animation: vt-flash 0.62s var(--ease-cine) both;
+}
+@keyframes vt-flash {
+  from { opacity: 0; }
+  40%  { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ================= 6. 进度与状态反馈 ================= */
+/* 顶部进度条（升级既有 .scroll-progress：加发光） */
+.scroll-progress {
+  box-shadow: 0 0 18px -2px rgba(var(--ember-rgb), 0.7);
+}
+
+/* 章节编号在进入视口时点亮 */
+.sec-num {
+  transition: color 0.7s var(--ease-cine), letter-spacing 0.7s var(--ease-cine);
+}
+.sec-num.is-live { color: var(--ember-2); letter-spacing: 0.34em; }
+
+/* ================= 7. 降级 ================= */
+@media (prefers-reduced-motion: reduce) {
+  [data-scene] > *:not([data-scene-skip]) {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .split__word, .split--char .split__chr {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .focus-in, .scroll-rail__fill, [data-depth-css] { animation: none !important; }
+  .parallax-media { transform: none !important; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+}
+
+/* 低性能档：关闭模糊类过渡（blur 在低端设备上很贵） */
+html.tier-low [data-scene] > *:not([data-scene-skip]) { filter: none !important; }
+html.tier-low .focus-in { animation: none !important; }

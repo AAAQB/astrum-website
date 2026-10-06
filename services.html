@@ -10,11 +10,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="view-transition" content="same-origin" />
   <link rel="stylesheet" href="assets/css/tokens.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
   <link rel="stylesheet" href="assets/css/effects.css" />
   <link rel="stylesheet" href="assets/css/pages.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
+  <link rel="stylesheet" href="assets/css/cinematic.css" />
+  <link rel="stylesheet" href="assets/css/motion.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -22,6 +25,16 @@
   <div class="vignette" aria-hidden="true"></div>
   <div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
   <div class="cursor-ring" aria-hidden="true" style="opacity:0"><span class="cursor-label"></span></div>
+
+  <!-- 电影级光效层（无 WebGL 时自动降级为纯 CSS 氛围） -->
+  <div class="cine-atmos" aria-hidden="true"><span class="cine-atmos__haze"></span></div>
+  <div class="grain--cine" aria-hidden="true"></div>
+  <div class="cine-scanlines" aria-hidden="true"></div>
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="cine-frame" aria-hidden="true">
+    <span class="cine-bar cine-bar--top"></span>
+    <span class="cine-bar cine-bar--bot"></span>
+  </div>
 
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader__inner">
@@ -79,7 +92,9 @@
   <main id="main">
     <!-- 页头 -->
     <section class="page-hero">
-      <div class="page-hero__bg aurora" aria-hidden="true">
+      <div class="page-hero__bg aurora" data-gl-host data-gl-scroll aria-hidden="true">
+        <canvas data-gl="dust" data-accent="ember" data-accent2="ice" data-count="640" data-spread="1.25"></canvas>
+        <div class="cine-beams" data-beams="4" data-beam-seed="2013"></div>
         <div class="aurora__blob aurora__blob--2" style="opacity:.42"></div>
         <div class="aurora__blob aurora__blob--3" style="opacity:.3"></div>
       </div>
@@ -195,10 +210,10 @@
 
         <div data-tabs data-reveal="up">
           <div class="tablist" role="tablist" aria-label="服务详情">
-            <button class="tab-btn active" role="tab" data-tab="p-cruise" aria-selected="true"><span class="n">A</span>轨道观光</button>
-            <button class="tab-btn" role="tab" data-tab="p-station" aria-selected="false"><span class="n">B</span>空间站驻留</button>
-            <button class="tab-btn" role="tab" data-tab="p-cargo" aria-selected="false"><span class="n">C</span>载荷与卫星</button>
-            <button class="tab-btn" role="tab" data-tab="p-academy" aria-selected="false"><span class="n">D</span>远穹学院</button>
+            <button class="tab-btn active" role="tab" data-tab="p-cruise" data-accent="ember" aria-selected="true"><span class="n">A</span>轨道观光</button>
+            <button class="tab-btn" role="tab" data-tab="p-station" data-accent="ice" aria-selected="false"><span class="n">B</span>空间站驻留</button>
+            <button class="tab-btn" role="tab" data-tab="p-cargo" data-accent="violet" aria-selected="false"><span class="n">C</span>载荷与卫星</button>
+            <button class="tab-btn" role="tab" data-tab="p-academy" data-accent="sunset" aria-selected="false"><span class="n">D</span>远穹学院</button>
           </div>
 
           <!-- 观光 -->
@@ -468,6 +483,20 @@
     </div>
   </div>
 
+  <button class="audio-toggle" id="audioToggle" type="button" aria-pressed="false" aria-label="开启环境音">
+    <span class="audio-toggle__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="audio-toggle__txt">环境音 关</span>
+  </button>
+
+  <script src="assets/js/gl/gl-core.js"></script>
+  <script src="assets/js/gl/gl-nebula.js"></script>
+  <script src="assets/js/gl/gl-light.js"></script>
+  <script src="assets/js/gl/gl-lens.js"></script>
+  <script src="assets/js/motion.js"></script>
+  <script src="assets/js/transitions.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/cinematic.js"></script>
+  <script src="assets/js/pages.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

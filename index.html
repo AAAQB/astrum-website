@@ -10,11 +10,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="view-transition" content="same-origin" />
   <link rel="stylesheet" href="assets/css/tokens.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
   <link rel="stylesheet" href="assets/css/effects.css" />
   <link rel="stylesheet" href="assets/css/pages.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
+  <link rel="stylesheet" href="assets/css/cinematic.css" />
+  <link rel="stylesheet" href="assets/css/motion.css" />
 </head>
 <body>
   <!-- 无障碍跳过链接 -->
@@ -25,6 +28,16 @@
   <div class="vignette" aria-hidden="true"></div>
   <div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
   <div class="cursor-ring" aria-hidden="true" style="opacity:0"><span class="cursor-label"></span></div>
+
+  <!-- 电影级光效层（无 WebGL 时自动降级为纯 CSS 氛围） -->
+  <div class="cine-atmos" aria-hidden="true"><span class="cine-atmos__haze"></span></div>
+  <div class="grain--cine" aria-hidden="true"></div>
+  <div class="cine-scanlines" aria-hidden="true"></div>
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="cine-frame" aria-hidden="true">
+    <span class="cine-bar cine-bar--top"></span>
+    <span class="cine-bar cine-bar--bot"></span>
+  </div>
 
   <!-- 预加载 -->
   <div class="preloader" id="preloader" aria-hidden="true">
@@ -100,12 +113,20 @@
   <main id="main">
     <!-- ================= HERO ================= -->
     <section class="hero" id="top">
-      <div class="hero__bg">
+      <div class="hero__bg" data-gl-host data-gl-scroll>
+        <!-- WebGL 体积星云：不支持 WebGL 时自动让位给下方的 2D 星场 -->
+        <canvas data-gl="nebula" data-accent="ember" data-accent2="ice" data-accent3="violet"
+                data-density="1" data-intensity="1.05" aria-hidden="true"></canvas>
         <canvas id="cosmos" aria-hidden="true"></canvas>
+        <div class="cine-beams" data-beams="5" data-beam-seed="20261224" data-depth="1" aria-hidden="true"></div>
+        <div class="cine-halo" data-x="26%" data-y="32%" data-halo-size="54vmax" aria-hidden="true"></div>
         <div class="horizon-glow" aria-hidden="true"></div>
-        <div class="aurora" aria-hidden="true">
+        <div class="aurora" aria-hidden="true" data-depth="2">
           <div class="aurora__blob aurora__blob--1"></div>
           <div class="aurora__blob aurora__blob--2"></div>
+        </div>
+        <div class="lens-flare" data-gl-host aria-hidden="true">
+          <canvas data-gl="lens" data-x="0.24" data-y="0.74" data-intensity="0.75"></canvas>
         </div>
       </div>
 
@@ -116,6 +137,12 @@
           <span class="mask-line" style="--d:.06s"><span>把人类的想象力，</span></span>
           <span class="mask-line" style="--d:.2s"><span>送上 <em>轨道</em>、带向深空。</span></span>
         </h1>
+
+        <div class="cine-caption" aria-hidden="true">
+          <span>ASTRUM ORBITAL PROGRAM</span>
+          <span>EST. 2019 · LEO 420 KM</span>
+          <span>REEL 01 / 08</span>
+        </div>
 
         <div class="hero__lower">
           <div class="hero__content">
@@ -688,6 +715,20 @@
     </div>
   </div>
 
+  <button class="audio-toggle" id="audioToggle" type="button" aria-pressed="false" aria-label="开启环境音">
+    <span class="audio-toggle__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="audio-toggle__txt">环境音 关</span>
+  </button>
+
+  <script src="assets/js/gl/gl-core.js"></script>
+  <script src="assets/js/gl/gl-nebula.js"></script>
+  <script src="assets/js/gl/gl-light.js"></script>
+  <script src="assets/js/gl/gl-lens.js"></script>
+  <script src="assets/js/motion.js"></script>
+  <script src="assets/js/transitions.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/cinematic.js"></script>
+  <script src="assets/js/pages.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

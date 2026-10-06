@@ -10,11 +10,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="view-transition" content="same-origin" />
   <link rel="stylesheet" href="assets/css/tokens.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
   <link rel="stylesheet" href="assets/css/effects.css" />
   <link rel="stylesheet" href="assets/css/pages.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
+  <link rel="stylesheet" href="assets/css/cinematic.css" />
+  <link rel="stylesheet" href="assets/css/motion.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -22,6 +25,16 @@
   <div class="vignette" aria-hidden="true"></div>
   <div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
   <div class="cursor-ring" aria-hidden="true" style="opacity:0"><span class="cursor-label"></span></div>
+
+  <!-- 电影级光效层（无 WebGL 时自动降级为纯 CSS 氛围） -->
+  <div class="cine-atmos" aria-hidden="true"><span class="cine-atmos__haze"></span></div>
+  <div class="grain--cine" aria-hidden="true"></div>
+  <div class="cine-scanlines" aria-hidden="true"></div>
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="cine-frame" aria-hidden="true">
+    <span class="cine-bar cine-bar--top"></span>
+    <span class="cine-bar cine-bar--bot"></span>
+  </div>
 
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader__inner">
@@ -79,7 +92,9 @@
   <main id="main">
     <!-- 页头 -->
     <section class="page-hero">
-      <div class="page-hero__bg aurora" aria-hidden="true">
+      <div class="page-hero__bg aurora" data-gl-host data-gl-scroll aria-hidden="true">
+        <canvas data-gl="dust" data-accent="ice" data-accent2="violet" data-count="640" data-spread="1.2"></canvas>
+        <div class="cine-beams" data-beams="3" data-beam-seed="1007"></div>
         <div class="aurora__blob aurora__blob--1" style="opacity:.4"></div>
         <div class="aurora__blob aurora__blob--3" style="opacity:.35"></div>
       </div>
@@ -384,6 +399,20 @@
     </div>
   </div>
 
+  <button class="audio-toggle" id="audioToggle" type="button" aria-pressed="false" aria-label="开启环境音">
+    <span class="audio-toggle__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="audio-toggle__txt">环境音 关</span>
+  </button>
+
+  <script src="assets/js/gl/gl-core.js"></script>
+  <script src="assets/js/gl/gl-nebula.js"></script>
+  <script src="assets/js/gl/gl-light.js"></script>
+  <script src="assets/js/gl/gl-lens.js"></script>
+  <script src="assets/js/motion.js"></script>
+  <script src="assets/js/transitions.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/cinematic.js"></script>
+  <script src="assets/js/pages.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
