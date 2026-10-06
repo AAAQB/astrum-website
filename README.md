@@ -7,7 +7,8 @@ A flagship brand website for a fictional space-travel company (远穹宇航). Ei
 ## Overview
 
 - **Eight pages.** Home, About, Services, Mission Archive, Journal, Pricing, Contact and a 404 page.
-- **Self-contained.** Every visual is generated at runtime from CSS, SVG, Canvas 2D or WebGL, so there are no bundled images and the site also runs by opening `index.html` straight from the file system.
+- **Self-contained.** Every visual is generated at runtime from CSS, SVG, Canvas 2D or WebGL. No image file is bundled and nothing is fetched from a third party, so the site also runs by opening `index.html` straight from the file system.
+- **Generated artwork and icons.** Key art is drawn procedurally as SVG by `assets/js/art.js` in eight scenes, and the interface uses an original 24x24 vector icon set from `assets/js/icons.js`.
 - **Cinematic rendering.** A hand-written WebGL volumetric nebula with a full post-processing chain (chromatic aberration, bloom, ACES tone mapping, vignette, film grain), plus a procedural anamorphic lens flare.
 - **Cross-document transitions.** The View Transitions API morphs shared elements between pages, with a graceful fallback for browsers without support.
 - **Scroll choreography.** Scene sequencing, per-word reveals and depth layers driven by pointer position and scroll velocity. Native scrolling is never hijacked, so trackpads, keyboards and anchor links behave normally.
@@ -36,6 +37,7 @@ assets/
     responsive.css    Responsive and print rules
     cinematic.css     Letterbox, volumetric beams, halos, dispersion, depth fog, grain
     motion.css        Scene sequencing, text reveals, scroll-driven animation, transitions
+    graphics.css      Generated artwork styling and the icon system
   js/
     app.js            Core interaction engine and orchestration entry point
     motion.js         Scroll choreography: scenes, reveals, depth layers, spotlight, rails
@@ -43,6 +45,8 @@ assets/
     audio.js          Procedural ambient audio, muted by default
     cinematic.js      Mounts effects declared in markup through data-* attributes
     pages.js          Per-page signature interactions
+    art.js            Procedural SVG key art: eight scenes, deterministic per scene name
+    icons.js          Original 24x24 icon set and in-place symbol replacement
     gl/
       gl-core.js      Minimal raw WebGL wrapper: shaders, FBOs, DPR, tiering, pausing
       gl-nebula.js    Volumetric nebula with cinematic post-processing
@@ -63,6 +67,40 @@ This layer is pure progressive enhancement. If a module is missing or unsupporte
 | Letterbox and text scrim | `.cine-frame` bars plus a `.hero__bg::after` gradient scrim, so headings keep AA contrast while the nebula animates | Static, no animation |
 | Page transitions | `transitions.js` with `<meta name="view-transition">`; the brand mark and page title morph between pages | `.page-veil` cross-fade; navigation always remains native |
 | Ambient audio | `audio.js`: synthesised in real time; the `AudioContext` is created only after the user opts in | The toggle is removed when `AudioContext` is unavailable |
+
+## Generated artwork
+
+The site ships no images. Everything that would normally be a photograph, an illustration or an icon file is produced in the browser instead.
+
+### Key art
+
+`assets/js/art.js` builds each illustration as an SVG document and hands it to CSS as a base64 data URI. A scene is described by a name, and a seeded PRNG (`mulberry32` over a hash of that name) makes every render reproducible: the same scene always produces the same picture, so nothing flickers between reloads or pages.
+
+| Scene | Used by | Character |
+| --- | --- | --- |
+| `solar` | Missions, flagship cards | Bright limb, layered corona, flare spikes |
+| `ice` | Cryogenic payloads | Pale ridges, cold haze, fine frost speckle |
+| `nebula` | Deep-space features | Soft emission clouds, embedded stars, dust lanes |
+| `aurora` | Orbit and cruise | Long vertical ribbons, high-altitude glow |
+| `grid` | Engineering and systems | Wireframe lattices with node markers |
+| `magma` | Propulsion and testing | Dark crust, cracked veins, lava pools |
+| `mist` | Ground operations | Low horizon, drifting bands, quiet contrast |
+| `circuit` | Avionics and software | Trace routing with active signal paths |
+
+Scenes are selected by poster variant, so `.poster--solar` becomes the `solar` scene. Each one is assembled from the same primitives (starfields, smooth Catmull-Rom ridges, coronas, spark clusters) and a small set of SVG filters: `feTurbulence` with `feDisplacementMap` for organic edges, and `feGaussianBlur` for glow. A scrim (`.poster-veil`) sits on top so captions stay readable whatever the scene does.
+
+Two details worth keeping if you edit the engine:
+
+- **Base64, not percent-encoding.** Quote- and space-heavy SVG inflates roughly 3x under `encodeURIComponent` but only 4/3 under base64. Across the eight scenes that is about 148 KB instead of 271 KB. The SVG payload is pure ASCII by design, which is what makes `btoa` safe here; `encodeURIComponent` remains as a fallback.
+- **Group expensive filters.** Wrapping many shapes in a single `<g filter="...">` is far cheaper than filtering each polygon, and the displacement filter in particular dominates render cost.
+
+### Icons
+
+`assets/js/icons.js` defines a set of stroked and filled icons on a 24x24 grid and exports `Icons.svg(name, options)`. The project previously leaned on Unicode characters (U+2726, U+25C8, U+2744, U+2715) to stand in for icons. Those glyphs render differently in every system font and disappear entirely when the font lacks them, so they are now swapped in place at runtime through a lookup table: a left arrow becomes a real vector shape rather than a font character.
+
+Where a character carries meaning as text rather than as decoration, it is left alone: the `拖动 / ← →` hint on the 404 page describes keyboard keys and stays literal.
+
+Team portraits are intentionally the one exception. Each member card shows a monogram over a CSS gradient, which reads more clearly at avatar size than any cropped scene would.
 
 ## Performance tiers
 
@@ -115,12 +153,20 @@ Motion uses a shared timing scale (`--ease-out`, `--ease-io`, `--ease-spring`; 1
 
 - **Remove the whole layer:** delete the `cinematic.css` and `motion.css` links from the `<head>` of each page, and the `gl-*`, `motion.js`, `transitions.js`, `audio.js`, `cinematic.js` and `pages.js` script tags before `</body>`. The site returns to its pre-upgrade rendering.
 - **Disable WebGL only:** remove the `<canvas data-gl="...">` elements. Their containers fall back to the CSS atmosphere automatically.
+- **Generate no key art:** remove the `art.js` script tag. Posters fall back to their CSS gradients and stay fully readable. The same applies to `icons.js`, which leaves the original Unicode characters in place.
 - **Disable audio only:** remove the `.audio-toggle` button. `audio.js` skips initialisation when the button is absent.
 - **Force the low tier for testing:** add `class="tier-low"` to `<html>`, or block WebGL in DevTools.
 
 Opening the site over `file://` works the same way. All scripts are classic scripts and local storage access is wrapped in `try/catch`, so the only consequence of a failure is that the audio preference is not remembered.
 
-## Assets and credits
+## Assets
 
-- Photography in the mission, article and service sections comes from **Pexels**. The mapping lives at the top of `assets/js/app.js` in `POSTER_PHOTOS`, keyed by poster variant such as `poster--solar`; the matching style is `.poster--photo` at the end of `assets/css/pages.css`.
-- Abstract decoration, including team portraits, is CSS-drawn. Offline, the site falls back to the CSS poster art, so no image is ever missing.
+- **Images:** none. Key art is generated by `assets/js/art.js` and served as SVG data URIs.
+- **Icons:** none. `assets/js/icons.js` provides the icon set; icons are inline SVG.
+- **Textures:** CSS gradients plus an inline SVG `feTurbulence` noise data URI, declared in `assets/css/tokens.css`.
+- **Favicon:** an inline SVG data URI in the `<head>` of each page.
+- **Fonts:** the only external reference. Google Fonts supplies Unbounded, Noto Serif SC, Noto Sans SC and Space Mono (three `<link>` lines per page). Offline, the browser falls back to system fonts and the layout holds.
+
+Because nothing is drawn from a third-party image or icon collection, there is no attribution requirement and no licensing question to answer. The scene composition, the icon geometry and the poster styling are all part of this repository.
+
+To drop the last external request, delete the three font `<link>` lines from each page and adjust the font stacks at the top of `assets/css/tokens.css` to your preferred system faces.

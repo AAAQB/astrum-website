@@ -555,7 +555,16 @@
 .prose strong { color: var(--ink-0); }
 .prose ul { margin: 1.4em 0; display: grid; gap: 0.8em; padding-left: 0.4em; }
 .prose li { position: relative; padding-left: 1.6em; }
-.prose li::before { content: "✦"; position: absolute; left: 0; color: var(--ember-2); font-size: 0.8em; top: 0.25em; }
+/* 列表标记：自绘四角星（mask），不依赖字体里的 ✦ */
+.prose li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.62em;
+  width: 0.72em; height: 0.72em;
+  background: var(--ember-2);
+  -webkit-mask: var(--ic-spark) center / contain no-repeat;
+  mask: var(--ic-spark) center / contain no-repeat;
+}
 .prose blockquote {
   margin: 2em 0;
   padding: 1.6em 2em;
@@ -860,22 +869,11 @@
 .hero__content { display: grid; gap: var(--sp-5); }
 .hero__cta .btn + .btn { margin-left: 0; }
 
-/* ===== Pexels 实拍图替换（由 JS 加 .poster--photo） ===== */
-.poster--photo {
-  background-size: cover;
-  background-position: center 30%;
+/* ===== 程序化生成的主视觉（由 art.js 加 .poster--art，样式见 graphics.css） ===== */
+.poster--art .poster__code {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.8);
 }
-.poster--photo::before,
-.poster--photo .poster__noise,
-.poster--photo .poster__glyph { display: none !important; }
-.poster--photo .poster-veil {
-  background: linear-gradient(180deg, rgba(5,7,13,0.08), rgba(5,7,13,0.62) 76%);
-}
-.poster--photo .poster__code {
-  color: rgba(255,255,255,0.85);
-  text-shadow: 0 1px 14px rgba(0,0,0,0.8);
-}
-.poster--photo:hover { background-size: cover; }
 @media (prefers-reduced-motion: reduce) {
-  .poster--photo { transition: none !important; }
+  .poster--art { transition: none !important; }
 }

@@ -1,0 +1,92 @@
+/* ============================================================
+   ASTRUM 远穹 — 自绘图形层
+   File : assets/css/graphics.css
+   覆盖 : ① 原创图标系统（配合 icons.js）
+          ② 程序化生成的矢量主视觉（配合 art.js）
+   说明 : 全站不使用任何第三方图片与图标字体。
+   ============================================================ */
+
+/* ================= 1. 自绘矢量遮罩 ================= */
+:root {
+  --ic-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9.5 12 15.5l6-6' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ic-spark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.6c.8 4.85 2.55 6.6 7.4 7.4-4.85.8-6.6 2.55-7.4 7.4-.8-4.85-2.55-6.6-7.4-7.4 4.85-.8 6.6-2.55 7.4-7.4z' fill='%23000'/%3E%3C/svg%3E");
+}
+
+/* ================= 2. 图标系统 ================= */
+.ic {
+  display: block;
+  width: 1em;
+  height: 1em;
+  flex: none;
+  overflow: visible;
+}
+
+/* 承载图标的行内元素统一为居中 flex，避免基线缝隙 */
+.btn .arrow,
+.link-arrow .ico,
+.m-star,
+.feature__ico,
+.info-card__ico,
+.ck,
+.ok-msg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ok-msg { gap: 0.45em; }
+.ok-msg .ic { color: var(--ice); }
+
+/* 各上下文尺寸 */
+.btn .arrow .ic { width: 1em; height: 1em; }
+.link-arrow .ico .ic { width: 1em; height: 1em; }
+.m-star .ic { width: 0.78em; height: 0.78em; }
+.feature__ico .ic { width: 1em; height: 1em; }
+.info-card__ico .ic { width: 20px; height: 20px; }
+.ck .ic { width: 1.05em; height: 1.05em; }
+.to-top .ic { width: 18px; height: 18px; }
+.lb-close .ic { width: 20px; height: 20px; }
+.icon-btn .ic, .lb-nav .ic { width: 22px; height: 22px; }
+.t-ico .ic { width: 1.1em; height: 1.1em; }
+.pillar-card__icon .ic { display: block; }
+
+/* 图标后的残余文字（如提示语）保持原有排版 */
+.ic-txt { display: inline; }
+
+/* 图标按钮：保证 svg 居中且不被行高顶偏 */
+.to-top, .lb-close, .icon-btn, .lb-nav { line-height: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ic { transition: none !important; }
+}
+
+/* ================= 3. 程序化矢量主视觉 ================= */
+/* art.js 会把生成的 SVG 写成 .poster 的 background-image。
+   这里负责底色、压暗与文字可读性。 */
+.poster--art {
+  background-color: #04060c;
+}
+
+/* 原太阳/冰环装饰环仍保留（提供缓慢转动），但在写实画面之上要克制 */
+.poster--art::before { opacity: 0.22; }
+
+/* 底部压暗：保证 .poster__code 标签在任何画面上都可读 */
+.poster-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      rgba(4, 6, 12, 0.06) 0%,
+      rgba(4, 6, 12, 0.02) 42%,
+      rgba(4, 6, 12, 0.55) 78%,
+      rgba(4, 6, 12, 0.86) 100%);
+}
+.poster--art .poster__code { z-index: 4; }
+.poster--art .poster__noise { opacity: 0.26; }
+
+/* 画面自带焦点，字号字形不再叠加 */
+.poster--art .poster__glyph { display: none; }
+
+/* 灯箱里重新创建的 .poster 同样生效 */
+.lightbox .poster--art { background-color: #04060c; }

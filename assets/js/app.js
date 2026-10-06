@@ -18,33 +18,20 @@
     return r.bottom > 0 && r.top < (w.innerHeight || d.documentElement.clientHeight) && r.right > 0 && r.left < (w.innerWidth || d.documentElement.clientWidth);
   };
 
-  /* ---------- Pexels 实拍素材映射（替代 CSS 海报模板；自用，署名 Pexels） ---------- */
-  var POSTER_PHOTOS = {
-    "poster--solar":   "https://images.pexels.com/photos/30596284/pexels-photo-30596284.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "poster--ice":     "https://images.pexels.com/photos/586073/pexels-photo-586073.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "poster--nebula":  "https://images.pexels.com/photos/13344256/pexels-photo-13344256.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "poster--aurora":  "https://images.pexels.com/photos/28237726/pexels-photo-28237726.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "poster--grid":    "https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "poster--magma":   "https://images.pexels.com/photos/7327336/pexels-photo-7327336.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "poster--mist":    "https://images.pexels.com/photos/3374249/pexels-photo-3374249.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "poster--circuit": "https://images.pexels.com/photos/9290878/pexels-photo-9290878.jpeg?auto=compress&cs=tinysrgb&w=1600"
-  };
-  function applyPosterPhoto(el) {
-    if (!el || !el.classList) return;
-    var key;
-    for (key in POSTER_PHOTOS) {
-      if (el.classList.contains(key)) {
-        el.classList.add("poster--photo");
-        el.style.backgroundImage = 'url("' + POSTER_PHOTOS[key] + '")';
-        return;
-      }
-    }
+  /* ---------- 主视觉 ----------
+     全站不再引用任何第三方图片：.poster 的画面由 art.js 用 SVG
+     程序化生成（见 assets/js/art.js），字符图标由 icons.js 换成矢量。
+     这里只做一次转发，避免核心引擎依赖具体实现。 */
+  function initArt() {
+    var A = w.ASTRUM || {};
+    if (A.Art && A.Art.init) A.Art.init();
+    if (A.Icons && A.Icons.init) A.Icons.init();
   }
-  function initPosterPhotos() {
-    $$(".poster").forEach(function (p) {
-      if (p.closest(".member-card")) return; // 团队头像保留抽象风格
-      applyPosterPhoto(p);
-    });
+
+  function applyArt(el) {
+    var A = w.ASTRUM || {};
+    if (A.Art && A.Art.apply) return A.Art.apply(el);
+    return false;
   }
 
   /* 支持 IntersectionObserver？ */
@@ -799,7 +786,7 @@
       var label = it.getAttribute("data-label") || "远穹任务";
       stage.innerHTML = '<div class="poster ' + poster + '"><div class="poster__noise"></div><div class="poster__glyph">' + (it.getAttribute("data-glyph") || "◈") + '</div><div class="poster-veil"></div></div>';
       stage.style.background = "var(--bg-1)";
-      applyPosterPhoto($(".poster", stage));
+      applyArt($(".poster", stage));
       if (cap) cap.textContent = label;
       if (countEl) countEl.textContent = (index + 1) + " / " + items.length;
     }
@@ -849,7 +836,11 @@
       d.body.appendChild(el);
     }
     el.className = "toast" + (type === "err" ? " toast--err" : "");
-    el.innerHTML = '<span class="t-ico">' + (type === "err" ? "✕" : "✓") + "</span><span class=\"t-msg\"></span>";
+    var A = w.ASTRUM || {};
+    var ico = (A.Icons && A.Icons.svg)
+      ? A.Icons.svg(type === "err" ? "close" : "check")
+      : (type === "err" ? "✕" : "✓");
+    el.innerHTML = '<span class="t-ico">' + ico + '</span><span class="t-msg"></span>';
     $(".t-msg", el).textContent = msg;
     el.classList.add("show");
     if (toastTimer) clearTimeout(toastTimer);
@@ -994,6 +985,11 @@
         if (w.console && console.warn) console.warn("[ASTRUM] cinematic module failed:", e);
       }
     });
+    try {
+      initArt();
+    } catch (e) {
+      if (w.console && console.warn) console.warn("[ASTRUM] art module failed:", e);
+    }
   }
 
   /* ============================================================
@@ -1008,7 +1004,6 @@
     initHeader();
     initCosmos();
     initReveal();
-    initPosterPhotos();
     initCounters();
     initCountdown();
     initParallax();
