@@ -322,11 +322,7 @@
     };
     host.addEventListener("pointerup", endDrag);
     host.addEventListener("pointercancel", endDrag);
-    host.addEventListener("lostpointercapture", endDrag);
-    /* 兜底：指针在面板外抬起也要结束拖拽。
-       这里刻意不用 pointerleave —— 指针捕获期间它的触发时机
-       在各浏览器上并不一致，会偶发地在中途掐断拖拽。 */
-    w.addEventListener("pointerup", endDrag);
+    host.addEventListener("pointerleave", endDrag);
 
     /* ---- 键盘 ---- */
     host.addEventListener("keydown", function (e) {
